@@ -3,6 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from amrte.app import build_engine
+from amrte.core.constants import AMRTE_VERSION
 from amrte.core.observability import JsonLinesSink
 from amrte.core.persistence import (
     LocalCheckpointRepository,
@@ -16,7 +17,7 @@ from amrte.core.persistence_types import (
 from amrte.core.recovery import RecoveryContext, RecoveryEngine
 
 
-VERSION = "0.27.0"
+VERSION = AMRTE_VERSION
 ENVIRONMENT = "RESEARCH"
 
 DEFAULT_STATE_ROOT = Path("data/state")
