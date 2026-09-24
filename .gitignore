@@ -108,6 +108,7 @@ temp/
 data/backup/
 data/logs/
 data/research-evidence-ledger/
+data/research-outcome-performance/
 data/runtime/
 data/state/
 data/state-repair-proof/

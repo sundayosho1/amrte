@@ -89,6 +89,12 @@ def test_runtime_composition_inventory_exposes_core_components():
         "research_evidence_ledger",
         "ledger_integrity_verification",
         "evidence_reconstruction",
+        "outcome_window_manager",
+        "outcome_evidence_validator",
+        "research_outcome_attribution",
+        "cohort_analytics",
+        "research_performance_intelligence",
+        "research_performance_snapshot",
         "state",
         "research_pipeline",
         "strategy_evaluation",
@@ -144,6 +150,12 @@ def test_runtime_composition_inventory_exposes_core_components():
     assert components["research_evidence_ledger"]["active"] is True
     assert components["ledger_integrity_verification"]["active"] is True
     assert components["evidence_reconstruction"]["active"] is True
+    assert components["outcome_window_manager"]["active"] is True
+    assert components["outcome_evidence_validator"]["active"] is True
+    assert components["research_outcome_attribution"]["active"] is True
+    assert components["cohort_analytics"]["active"] is True
+    assert components["research_performance_intelligence"]["active"] is True
+    assert components["research_performance_snapshot"]["active"] is True
     assert components["data_trust"]["persistence_participant"] is True
     assert components["data_trust"]["recovery_participant"] is True
     assert components["market_intelligence"]["persistence_participant"] is True
@@ -160,6 +172,9 @@ def test_runtime_composition_inventory_exposes_core_components():
     assert components["research_decision_ledger"]["recovery_participant"] is True
     assert components["research_evidence_ledger"]["persistence_participant"] is True
     assert components["evidence_reconstruction"]["recovery_participant"] is True
+    assert components["outcome_window_manager"]["persistence_participant"] is True
+    assert components["research_outcome_attribution"]["recovery_participant"] is True
+    assert components["research_performance_snapshot"]["persistence_participant"] is True
     assert components["state"]["persistence_participant"] is True
     assert components["state"]["recovery_participant"] is True
 
