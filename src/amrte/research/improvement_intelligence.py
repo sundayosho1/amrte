@@ -866,7 +866,7 @@ class ResearchImprovementRuntime:
             "affected_condition": affected_payload,
             "observed_finding": summary,
             "research_question": _hypothesis_text(finding_type, affected_payload, comparison_payload),
-            "measurable_validation_criterion": "Prompt 50 controlled validation must reproduce the finding under predefined cohorts without weakening safety or bias controls.",
+            "measurable_validation_criterion": "Controlled validation must reproduce the finding under predefined cohorts without weakening safety or bias controls.",
             "automatic_change": False,
             "validation_required": True,
         }
