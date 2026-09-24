@@ -95,6 +95,12 @@ def test_runtime_composition_inventory_exposes_core_components():
         "cohort_analytics",
         "research_performance_intelligence",
         "research_performance_snapshot",
+        "improvement_evidence_validator",
+        "research_pattern_analysis",
+        "research_stability_analysis",
+        "research_failure_clustering",
+        "improvement_hypothesis_generation",
+        "research_improvement_snapshot",
         "state",
         "research_pipeline",
         "strategy_evaluation",
@@ -156,6 +162,12 @@ def test_runtime_composition_inventory_exposes_core_components():
     assert components["cohort_analytics"]["active"] is True
     assert components["research_performance_intelligence"]["active"] is True
     assert components["research_performance_snapshot"]["active"] is True
+    assert components["improvement_evidence_validator"]["active"] is True
+    assert components["research_pattern_analysis"]["active"] is True
+    assert components["research_stability_analysis"]["active"] is True
+    assert components["research_failure_clustering"]["active"] is True
+    assert components["improvement_hypothesis_generation"]["active"] is True
+    assert components["research_improvement_snapshot"]["active"] is True
     assert components["data_trust"]["persistence_participant"] is True
     assert components["data_trust"]["recovery_participant"] is True
     assert components["market_intelligence"]["persistence_participant"] is True
@@ -175,6 +187,9 @@ def test_runtime_composition_inventory_exposes_core_components():
     assert components["outcome_window_manager"]["persistence_participant"] is True
     assert components["research_outcome_attribution"]["recovery_participant"] is True
     assert components["research_performance_snapshot"]["persistence_participant"] is True
+    assert components["improvement_evidence_validator"]["persistence_participant"] is True
+    assert components["improvement_hypothesis_generation"]["recovery_participant"] is True
+    assert components["research_improvement_snapshot"]["persistence_participant"] is True
     assert components["state"]["persistence_participant"] is True
     assert components["state"]["recovery_participant"] is True
 
