@@ -23,6 +23,7 @@ class AMRTEEngine:
         self.audit = audit
         self.environment = RuntimeEnvironment.UNKNOWN
         self.configuration = None
+        self.composition = None
         self._initialized = False
 
     def initialize(self, environment_name: str) -> Result[SystemState]:
@@ -35,6 +36,8 @@ class AMRTEEngine:
             for name in MANDATORY_SERVICES:
                 self.registry.require(name)
             self.audit.record("services_validated", {"services": MANDATORY_SERVICES})
+            if "composition" in self.registry.names():
+                self.composition = self.registry.require("composition")
             config_provider: IConfigurationProvider = self.registry.require("configuration")
             loaded = config_provider.load()
             if not loaded.success:
@@ -69,11 +72,15 @@ class AMRTEEngine:
     def start(self) -> Result[SystemState]:
         if not self._initialized or self.state_machine.state is not SystemState.READY:
             return Result.fail(self._error("NOT_READY", "engine is not ready"))
+        if self.composition is not None:
+            self.composition.activate()
         return self.state_machine.transition(SystemState.RUNNING, "controlled research start")
 
     def shutdown(self, reason: str) -> Result[SystemState]:
         if self.state_machine.state is SystemState.STOPPED:
             return Result.ok(SystemState.STOPPED)
+        if self.composition is not None:
+            self.composition.shutdown()
         repository: IStateRepository = self.registry.require("state")
         saved = repository.save({"state": self.state_machine.state.name, "reason": reason})
         if not saved.success:

@@ -32,6 +32,9 @@ from amrte.web.observability import (
 from amrte.web.persistence_recovery import (
     build_persistence_recovery_summary,
 )
+from amrte.web.runtime_composition import (
+    build_runtime_composition_summary,
+)
 
 
 VERSION = AMRTE_VERSION
@@ -163,6 +166,12 @@ def create_app(
     def system_health(request: Request) -> dict[str, object]:
         runtime = request.app.state.runtime
         state = runtime.state
+        composition = runtime.composition
+        composition_diagnostics = (
+            composition.diagnostics()
+            if composition is not None
+            else None
+        )
 
         return {
             "status": (
@@ -171,6 +180,31 @@ def create_app(
                 else "NOT_RUNNING"
             ),
             "engine_state": state,
+            "core_runtime_state": state,
+            "component_readiness": (
+                composition_diagnostics["readiness"]
+                if composition_diagnostics is not None
+                else {
+                    "ready": False,
+                    "reasons": ["composition:UNAVAILABLE"],
+                }
+            ),
+            "component_health": (
+                composition_diagnostics["health"]
+                if composition_diagnostics is not None
+                else {
+                    "ready": False,
+                    "reasons": ["composition:UNAVAILABLE"],
+                }
+            ),
+            "research_pipeline": (
+                composition_diagnostics["research_pipeline"]
+                if composition_diagnostics is not None
+                else {
+                    "active": False,
+                    "status": "NOT_REGISTERED",
+                }
+            ),
             "research_mode": "RESEARCH-ONLY",
             "execution": "PROHIBITED",
         }
@@ -311,6 +345,15 @@ def create_app(
     ) -> dict[str, object]:
         runtime = request.app.state.runtime
         return build_administration_summary(
+            runtime
+        )
+
+    @app.get("/api/v1/runtime-composition")
+    def runtime_composition_summary(
+        request: Request,
+    ) -> dict[str, object]:
+        runtime = request.app.state.runtime
+        return build_runtime_composition_summary(
             runtime
         )
 

@@ -52,6 +52,12 @@ class PersistentResearchRuntime:
             return "NOT_STARTED"
         return self.engine.state_machine.state.name
 
+    @property
+    def composition(self):
+        if self.engine is None:
+            return None
+        return getattr(self.engine, "composition", None)
+
     def start(self) -> None:
         if self.engine is not None:
             raise RuntimeError("AMRTE runtime has already been started")
