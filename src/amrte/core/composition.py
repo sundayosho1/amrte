@@ -665,6 +665,12 @@ def register_core_components(
 
     for metadata, component in controlled_experiment_component_registrations():
         composition.register(metadata, component)
+    from amrte.research.forward_runtime import forward_research_component_registrations
+
+    p40_data_trust_component = composition.get("data_trust").component
+    p40_data_quality_runtime = getattr(p40_data_trust_component, "runtime", None)
+    for metadata, component in forward_research_component_registrations(data_quality_runtime=p40_data_quality_runtime):
+        composition.register(metadata, component)
     composition.register(
         ComponentMetadata(
             component_id="composition",

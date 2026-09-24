@@ -113,6 +113,12 @@ def test_runtime_composition_inventory_exposes_core_components():
         "configuration_comparison",
         "research_promotion_assessment",
         "versioned_research_configuration",
+        "forward_observation_stream",
+        "forward_session_registry",
+        "forward_research_runtime",
+        "shadow_research_comparison",
+        "forward_drift_monitor",
+        "forward_runtime_recovery",
         "state",
         "research_pipeline",
         "strategy_evaluation",
@@ -192,6 +198,12 @@ def test_runtime_composition_inventory_exposes_core_components():
     assert components["configuration_comparison"]["active"] is True
     assert components["research_promotion_assessment"]["active"] is True
     assert components["versioned_research_configuration"]["active"] is True
+    assert components["forward_observation_stream"]["active"] is True
+    assert components["forward_session_registry"]["active"] is True
+    assert components["forward_research_runtime"]["active"] is True
+    assert components["shadow_research_comparison"]["active"] is True
+    assert components["forward_drift_monitor"]["active"] is True
+    assert components["forward_runtime_recovery"]["active"] is True
     assert components["data_trust"]["persistence_participant"] is True
     assert components["data_trust"]["recovery_participant"] is True
     assert components["market_intelligence"]["persistence_participant"] is True
@@ -217,6 +229,8 @@ def test_runtime_composition_inventory_exposes_core_components():
     assert components["experiment_registry"]["persistence_participant"] is True
     assert components["research_experiment_runtime"]["recovery_participant"] is True
     assert components["versioned_research_configuration"]["persistence_participant"] is True
+    assert components["forward_research_runtime"]["persistence_participant"] is True
+    assert components["forward_runtime_recovery"]["recovery_participant"] is True
     assert components["state"]["persistence_participant"] is True
     assert components["state"]["recovery_participant"] is True
 
