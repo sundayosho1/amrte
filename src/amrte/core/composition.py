@@ -657,6 +657,10 @@ def register_core_components(
     p47_ledger_component = composition.get("research_evidence_ledger").component
     for metadata, component in research_outcome_performance_component_registrations(ledger_component=p47_ledger_component):
         composition.register(metadata, component)
+    from amrte.research.improvement_intelligence import research_improvement_component_registrations
+
+    for metadata, component in research_improvement_component_registrations():
+        composition.register(metadata, component)
     composition.register(
         ComponentMetadata(
             component_id="composition",
