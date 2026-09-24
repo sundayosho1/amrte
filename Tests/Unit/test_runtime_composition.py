@@ -378,6 +378,10 @@ def test_build_engine_exposes_composition_without_activating_pipeline():
     assert engine.composition.get("strategy_registry").ready is True
     assert engine.composition.get("strategy_evaluation").ready is True
     assert engine.composition.get("research_candidate_runtime").ready is True
+    assert engine.composition.get("central_scoring").ready is True
+    assert engine.composition.get("candidate_comparison").ready is True
+    assert engine.composition.get("strategy_arbitration").ready is True
+    assert engine.composition.get("post_scoring_research_assessment").ready is True
     pipeline = engine.composition.research_pipeline_status()
     assert pipeline["registered"] is True
     assert pipeline["active"] is False
