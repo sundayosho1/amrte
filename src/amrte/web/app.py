@@ -41,6 +41,9 @@ from amrte.web.market_data_boundary import (
 from amrte.web.data_quality_runtime import (
     build_data_quality_runtime_summary,
 )
+from amrte.web.market_intelligence import (
+    build_market_intelligence_summary,
+)
 
 
 VERSION = AMRTE_VERSION
@@ -383,6 +386,15 @@ def create_app(
     ) -> dict[str, object]:
         runtime = request.app.state.runtime
         return build_data_quality_runtime_summary(
+            runtime
+        )
+
+    @app.get("/api/v1/market-intelligence")
+    def market_intelligence_summary(
+        request: Request,
+    ) -> dict[str, object]:
+        runtime = request.app.state.runtime
+        return build_market_intelligence_summary(
             runtime
         )
 
