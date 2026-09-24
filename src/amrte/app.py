@@ -2,6 +2,11 @@ from datetime import datetime, timezone
 
 from .core.capabilities import CapabilityRegistry
 from .core.clock import FixedClock
+from .core.composition import (
+    CompositionContext,
+    RuntimeComposition,
+    register_core_components,
+)
 from .core.config_engine import MasterConfigurationEngine, MasterConfigurationProvider
 from .core.constants import DEFAULT_SEED
 from .core.engine import AMRTEEngine
@@ -43,6 +48,15 @@ def build_engine(
     registry.register("execution", ProhibitedExecutionProvider(audit))
     registry.register("health", HealthService())
     registry.register("random", SeededRandomSource(DEFAULT_SEED))
+    services = {
+        name: registry.require(name)
+        for name in registry.names()
+    }
+    composition = RuntimeComposition(audit)
+    register_core_components(composition, services)
+    composition.freeze()
+    composition.initialize(CompositionContext(services))
+    registry.register("composition", composition)
     engine = AMRTEEngine(registry, StateMachine(clock, audit), CapabilityRegistry(), audit)
     engine.observability = observability
     engine.initialize(environment)

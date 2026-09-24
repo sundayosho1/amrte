@@ -247,6 +247,28 @@ def build_health_diagnostics_summary(
     )
 
     configuration = engine.configuration
+    composition = getattr(runtime, "composition", None)
+    composition_diagnostics = (
+        composition.diagnostics()
+        if composition is not None
+        else {
+            "components": [],
+            "readiness": {
+                "ready": False,
+                "reasons": ["composition:UNAVAILABLE"],
+            },
+            "health": {
+                "ready": False,
+                "reasons": ["composition:UNAVAILABLE"],
+                "components": {},
+            },
+            "research_pipeline": {
+                "registered": False,
+                "active": False,
+                "status": "NOT_REGISTERED",
+            },
+        }
+    )
 
     return {
         "mode": "READ_ONLY",
@@ -270,6 +292,25 @@ def build_health_diagnostics_summary(
             "ready": report.ready,
             "reasons": list(
                 report.reasons
+            ),
+        },
+        "composition": {
+            "available": composition is not None,
+            "readiness": composition_diagnostics[
+                "readiness"
+            ],
+            "health": composition_diagnostics[
+                "health"
+            ],
+            "component_count": len(
+                composition_diagnostics[
+                    "components"
+                ]
+            ),
+            "research_pipeline": (
+                composition_diagnostics[
+                    "research_pipeline"
+                ]
             ),
         },
         "mandatory_services": services,
