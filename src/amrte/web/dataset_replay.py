@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Any
 
 from amrte.core.constants import AMRTE_VERSION
+from amrte.market.boundary import boundary_components_from_inventory
 
 VERSION = AMRTE_VERSION
 
@@ -31,6 +32,30 @@ REPLAY_SERVICE_NAMES = (
 
 
 IMPLEMENTED_CAPABILITIES = (
+    {
+        "capability": "CANONICAL_MARKET_OBSERVATION_CONTRACT",
+        "component": "market_data_contract",
+        "implemented": True,
+        "runtime_authoritative": False,
+    },
+    {
+        "capability": "SOURCE_ADAPTER_FRAMEWORK",
+        "component": "market_data_source_adapter_framework",
+        "implemented": True,
+        "runtime_authoritative": False,
+    },
+    {
+        "capability": "CANONICAL_DATASET_MANIFEST",
+        "component": "market_dataset_authority",
+        "implemented": True,
+        "runtime_authoritative": False,
+    },
+    {
+        "capability": "POINT_IN_TIME_MARKET_REPLAY",
+        "component": "market_dataset_authority",
+        "implemented": True,
+        "runtime_authoritative": False,
+    },
     {
         "capability": "DATASET_IDENTITY",
         "component": "DeterministicMarketDataProvider",
@@ -120,6 +145,13 @@ def _registered_services(
     return result
 
 
+def _composition_boundary_components(runtime: Any) -> dict[str, Any]:
+    composition = getattr(runtime, "composition", None)
+    if composition is None:
+        return {}
+    return boundary_components_from_inventory(composition.inventory())
+
+
 def _first_registered(
     services: dict[str, Any],
     names: tuple[str, ...],
@@ -138,6 +170,7 @@ def build_dataset_replay_integrity(
 
     values = _configuration_values(runtime)
     services = _registered_services(runtime)
+    boundary_components = _composition_boundary_components(runtime)
 
     dataset_service = _first_registered(
         services,
@@ -269,7 +302,8 @@ def build_dataset_replay_integrity(
 
         "replay_authority": {
             "authoritative_replay_service_registered":
-                replay_service is not None,
+                replay_service is not None
+                or boundary_components.get("market_dataset_authority", {}).get("ready") is True,
 
             "runtime_replay_service":
                 replay_service,
@@ -283,6 +317,7 @@ def build_dataset_replay_integrity(
             "reason": (
                 "AUTHORITATIVE_REPLAY_SERVICE_NOT_REGISTERED"
                 if replay_service is None
+                and boundary_components.get("market_dataset_authority", {}).get("ready") is not True
                 else "WEB_REPLAY_MUTATION_NOT_ENABLED"
             ),
         },
@@ -307,10 +342,24 @@ def build_dataset_replay_integrity(
                         == "DeterministicEventProvider"
                         and event_service is not None
                     )
+                    or (
+                        item["component"]
+                        in boundary_components
+                        and boundary_components[item["component"]]["ready"] is True
+                    )
                 ),
             }
             for item in IMPLEMENTED_CAPABILITIES
         ],
+
+        "canonical_market_data_boundary": {
+            "registered": bool(boundary_components),
+            "components": boundary_components,
+            "configured_dataset_loaded": (
+                boundary_components.get("market_data_configured_dataset", {}).get("status")
+                not in (None, "UNAVAILABLE")
+            ),
+        },
 
         "execution_boundary": {
             "capability": "PROHIBITED",

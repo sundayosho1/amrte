@@ -616,6 +616,10 @@ def register_core_components(
             ),
             services[component_id],
         )
+    from amrte.market.boundary import market_data_component_registrations
+
+    for metadata, component in market_data_component_registrations():
+        composition.register(metadata, component)
     composition.register(
         ComponentMetadata(
             component_id="composition",

@@ -362,6 +362,9 @@ def test_component_inventory_and_dependency_diagnostics_are_accurate():
 def test_build_engine_exposes_composition_without_activating_pipeline():
     engine = build_engine()
     assert engine.composition is not None
+    assert engine.composition.get("market_data_contract").ready is True
+    assert engine.composition.get("market_dataset_authority").ready is True
+    assert engine.composition.get("market_data_configured_dataset").status is ComponentStatus.UNAVAILABLE
     pipeline = engine.composition.research_pipeline_status()
     assert pipeline["registered"] is True
     assert pipeline["active"] is False
