@@ -1,0 +1,414 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+    <title>Research Evidence & Analytics | AMRTE</title>
+    <link
+        rel="stylesheet"
+        href="/static/console.css"
+    >
+</head>
+
+<body class="research-controls-page research-evidence-page">
+<div class="shell">
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-mark">A</div>
+
+            <div>
+                <div class="brand-name">AMRTE</div>
+                <div class="brand-subtitle">
+                    Research Console
+                </div>
+            </div>
+        </div>
+
+        <nav class="nav">
+            <a href="/">
+                Command Centre
+            </a>
+
+            <a href="/configuration">
+                Configuration
+            </a>
+
+            <a href="/research-controls">
+                Research Controls
+            </a>
+
+            <a href="/dataset-replay">
+                Dataset &amp; Replay
+            </a>
+
+            <a href="/observability">
+                Observability
+            </a>
+
+            <a href="/persistence-recovery">
+                Persistence &amp; Recovery
+            </a>
+
+            <a href="/health-diagnostics">
+                Health &amp; Diagnostics
+            </a>
+
+            <a href="/administration">
+                Administration
+            </a>
+
+            <a
+                href="/research-evidence"
+                class="nav-item active"
+                aria-current="page"
+            >
+                Research Evidence &amp; Analytics
+            </a>
+            <a
+                href="/research-governance"
+                class="nav-item"
+            >
+                Research Governance &amp; Safety
+            </a>
+            <a class="nav-item" href="/operational-readiness">Operational Readiness &amp; Evidence</a>
+            <a href="/research-lifecycle-quality">Research Lifecycle &amp; Quality</a>
+        </nav>
+
+        <div class="safeguard sidebar-safeguard">
+            <strong>RESEARCH-ONLY</strong>
+            <span>
+                Financial execution prohibited
+            </span>
+        </div>
+
+    </aside>
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <div class="evidence-title-group">
+                <div class="eyebrow">
+                    RESEARCH ASSURANCE
+                </div>
+
+                <h1>
+                    Research Evidence &amp; Analytics
+                </h1>
+
+                <p class="page-intro">
+                    Read-only capability and evidence-readiness
+                    projection from the authoritative AMRTE
+                    research runtime.
+                </p>
+            </div>
+
+            <div class="status-cluster evidence-status-cluster">
+                <span class="evidence-mode-badge">
+                    READ-ONLY
+                </span>
+
+                <span class="evidence-mode-badge">
+                    RESEARCH-ONLY
+                </span>
+            </div>
+
+        </header>
+
+        <div class="safeguard evidence-assurance-banner">
+            <strong>RESEARCH-ONLY</strong>
+
+            <span>
+                This console reports capability readiness only.
+                Analytics, experiments and validation remain
+                observational in this console. Financial execution
+                is prohibited.
+            </span>
+        </div>
+
+        <div
+            id="research-evidence-error"
+            class="evidence-error"
+            hidden
+        >
+            Research evidence projection is currently unavailable.
+        </div>
+
+        <section class="dashboard-grid evidence-identity-grid">
+
+            <article class="console-card evidence-card">
+
+                <div class="card-heading">
+                    <div>
+                        <div class="eyebrow">
+                            RUNTIME
+                        </div>
+
+                        <h2>
+                            Runtime Identity
+                        </h2>
+                    </div>
+
+                    <span class="evidence-card-state">
+                        AUTHORITATIVE
+                    </span>
+                </div>
+
+                <dl class="detail-list evidence-detail-list">
+
+                    <div>
+                        <dt>Engine state</dt>
+                        <dd id="runtime-state">?</dd>
+                    </div>
+
+                    <div>
+                        <dt>Environment</dt>
+                        <dd id="runtime-environment">?</dd>
+                    </div>
+
+                    <div>
+                        <dt>Version</dt>
+                        <dd id="runtime-version">?</dd>
+                    </div>
+
+                </dl>
+
+            </article>
+
+            <article class="console-card evidence-card">
+
+                <div class="card-heading">
+                    <div>
+                        <div class="eyebrow">
+                            CONFIGURATION
+                        </div>
+
+                        <h2>
+                            Configuration Identity
+                        </h2>
+                    </div>
+
+                    <span class="evidence-card-state">
+                        IMMUTABLE VIEW
+                    </span>
+                </div>
+
+                <dl class="detail-list evidence-detail-list">
+
+                    <div>
+                        <dt>Snapshot</dt>
+                        <dd id="configuration-snapshot">?</dd>
+                    </div>
+
+                    <div>
+                        <dt>Hash</dt>
+                        <dd
+                            id="configuration-hash"
+                            class="hash-value"
+                        >?</dd>
+                    </div>
+
+                </dl>
+
+            </article>
+
+            <article class="console-card evidence-card execution-card">
+
+                <div class="card-heading">
+                    <div>
+                        <div class="eyebrow">
+                            SAFETY
+                        </div>
+
+                        <h2>
+                            Execution Boundary
+                        </h2>
+                    </div>
+
+                    <span
+                        id="execution-boundary"
+                        class="prohibited-badge"
+                    >?</span>
+                </div>
+
+                <dl class="detail-list evidence-detail-list">
+
+                    <div>
+                        <dt>Provider</dt>
+                        <dd id="execution-provider">?</dd>
+                    </div>
+
+                    <div>
+                        <dt>Financial execution</dt>
+                        <dd
+                            id="financial-execution"
+                            class="prohibited-value"
+                        >?</dd>
+                    </div>
+
+                    <div>
+                        <dt>Broker connectivity</dt>
+                        <dd
+                            id="broker-connectivity"
+                            class="prohibited-value"
+                        >?</dd>
+                    </div>
+
+                    <div>
+                        <dt>Account connectivity</dt>
+                        <dd
+                            id="account-connectivity"
+                            class="prohibited-value"
+                        >?</dd>
+                    </div>
+
+                </dl>
+
+            </article>
+
+            <article class="console-card evidence-card">
+
+                <div class="card-heading">
+                    <div>
+                        <div class="eyebrow">
+                            EVIDENCE
+                        </div>
+
+                        <h2>
+                            Evidence Availability
+                        </h2>
+                    </div>
+
+                    <span class="evidence-card-state">
+                        DEFINITIONS
+                    </span>
+                </div>
+
+                <p class="evidence-definition-intro">
+                    Capability implementation, runtime activation
+                    and evidence availability are separate states.
+                </p>
+
+                <dl class="detail-list evidence-detail-list evidence-definitions">
+
+                    <div>
+                        <dt>Implemented</dt>
+                        <dd>
+                            Capability exists in the research
+                            codebase.
+                        </dd>
+                    </div>
+
+                    <div>
+                        <dt>Runtime Active</dt>
+                        <dd>
+                            Capability has authoritative runtime
+                            ownership.
+                        </dd>
+                    </div>
+
+                    <div>
+                        <dt>Evidence Available</dt>
+                        <dd>
+                            Authoritative evidence exists for
+                            presentation.
+                        </dd>
+                    </div>
+
+                </dl>
+
+            </article>
+
+        </section>
+
+        <section class="panel evidence-panel">
+
+            <div class="panel-heading">
+
+                <div>
+                    <div class="eyebrow">
+                        CAPABILITIES
+                    </div>
+
+                    <h2>
+                        Capability Readiness
+                    </h2>
+                </div>
+
+                <span class="evidence-panel-state">
+                    8 CAPABILITIES
+                </span>
+
+            </div>
+
+            <div
+                id="research-capability-list"
+                class="detail-grid capability-grid"
+            ></div>
+
+        </section>
+
+        <section class="panel evidence-panel">
+
+            <div class="panel-heading">
+
+                <div>
+                    <div class="eyebrow">
+                        AUTHORITY
+                    </div>
+
+                    <h2>
+                        Read-Only Controls
+                    </h2>
+                </div>
+
+                <span class="evidence-panel-state">
+                    PROJECTION ONLY
+                </span>
+
+            </div>
+
+            <div class="detail-grid control-grid">
+
+                <div class="detail-item control-item available-control">
+                    <span>Inventory inspection</span>
+                    <strong>AVAILABLE</strong>
+                </div>
+
+                <div class="detail-item control-item available-control">
+                    <span>Readiness inspection</span>
+                    <strong>AVAILABLE</strong>
+                </div>
+
+                <div class="detail-item control-item prohibited-control">
+                    <span>Analytics execution</span>
+                    <strong>PROHIBITED</strong>
+                </div>
+
+                <div class="detail-item control-item prohibited-control">
+                    <span>Experiment execution</span>
+                    <strong>PROHIBITED</strong>
+                </div>
+
+                <div class="detail-item control-item prohibited-control">
+                    <span>Runtime mutation</span>
+                    <strong>PROHIBITED</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="/static/research-evidence.js"></script>
+</body>
+</html>
+

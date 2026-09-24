@@ -1,0 +1,112 @@
+﻿# ============================================================
+# AMRTE - Git Ignore
+# ============================================================
+
+# ----------------------------
+# Python virtual environments
+# ----------------------------
+.venv/
+venv/
+env/
+ENV/
+
+# ----------------------------
+# Python cache / compiled files
+# ----------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ----------------------------
+# Test / coverage caches
+# ----------------------------
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# ----------------------------
+# Environment / secrets
+# ----------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# ----------------------------
+# IDE / editor
+# ----------------------------
+.vscode/
+.idea/
+*.code-workspace
+
+# ----------------------------
+# OS files
+# ----------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ----------------------------
+# Python packaging
+# ----------------------------
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ----------------------------
+# Logs / temporary files
+# ----------------------------
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+# ----------------------------
+# Profiling / generated output
+# ----------------------------
+profile.txt
+profile2.txt
+*.prof
+
+# ----------------------------
+# Local databases
+# ----------------------------
+*.sqlite
+*.sqlite3
+*.db
+
+# ----------------------------
+# Runtime / checkpoint artifacts
+# ----------------------------
+checkpoints/
+runtime/
+tmp/
+temp/
+
+# ----------------------------
+# Archives / release artifacts
+# ----------------------------
+*.zip
+*.tar
+*.tar.gz
+*.7z
+
+# ----------------------------
+# AMRTE generated data
+# Keep data/*.py source/proof scripts,
+# exclude generated/runtime material
+# ----------------------------
+data/backup/
+data/logs/
+data/runtime/
+data/state/
+data/state-repair-proof/

@@ -1,0 +1,371 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+    <title>Configuration Ã‚Â· AMRTE Research Console</title>
+    <link
+        rel="stylesheet"
+        href="/static/console.css"
+    >
+</head>
+<body>
+<div class="shell">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <h1 class="brand-title">AMRTE</h1>
+            <div class="brand-subtitle">
+                Research Console
+            </div>
+        </div>
+
+        <nav class="nav">
+            <a class="nav-item" href="/">
+                Command Centre
+            </a>
+            <a class="nav-item active" href="/configuration">
+                Configuration
+            </a>
+            <a
+                class="nav-item"
+                href="/research-controls"
+            >
+                Research Controls
+            </a>
+            <a
+                class="nav-item"
+                href="/dataset-replay"
+            >
+                Dataset &amp; Replay
+            </a>
+            <a class="nav-item" href="/observability">
+                Observability
+            </a>
+            <a
+                class="nav-item"
+                href="/persistence-recovery"
+            >
+                Persistence &amp; Recovery
+            </a>
+            <a class="nav-item" href="/health-diagnostics">Health &amp; Diagnostics</a>
+            <a class="nav-item" href="/administration">
+                Administration
+            </a>
+            <a class="nav-item" href="/research-evidence">
+                Research Evidence &amp; Analytics
+            </a>
+            <a class="nav-item" href="/research-governance">
+                Research Governance &amp; Safety
+            </a>
+            <a class="nav-item" href="/operational-readiness">Operational Readiness &amp; Evidence</a>
+            <a href="/research-lifecycle-quality">Research Lifecycle &amp; Quality</a>        </nav>
+
+        <div class="safeguard">
+            <strong>Research-only runtime</strong>
+            Financial execution capability is prohibited.
+        </div>
+    </aside>
+
+    <main class="main">
+
+        <header class="topbar">
+            <h2 class="page-title">
+                Configuration
+            </h2>
+
+            <div class="runtime-status">
+                <span
+                    id="runtime-status-dot"
+                    class="status-dot"
+                ></span>
+                Configuration:
+                <strong id="configuration-top-status">
+                    Loading
+                </strong>
+            </div>
+        </header>
+
+        <section class="content">
+
+            <div
+                id="configuration-error"
+                class="banner error"
+                hidden
+            ></div>
+
+            <div class="banner">
+                <div>
+                    <div class="banner-title">
+                        Effective Configuration
+                    </div>
+                    <div class="banner-text">
+                        Read-only view of the active AMRTE
+                        research configuration, provenance,
+                        profile overrides and safeguards.
+                    </div>
+                </div>
+
+                <span class="badge success">
+                    READ ONLY
+                </span>
+            </div>
+
+            <div class="grid metrics">
+
+                <article class="card">
+                    <div class="metric-label">
+                        Profile
+                    </div>
+                    <div
+                        id="config-profile"
+                        class="metric-value loading"
+                    >
+                        Loading
+                    </div>
+                    <div class="metric-subtext">
+                        Effective research profile
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="metric-label">
+                        Validation
+                    </div>
+                    <div
+                        id="config-validation"
+                        class="metric-value loading"
+                    >
+                        Loading
+                    </div>
+                    <div class="metric-subtext">
+                        Warnings:
+                        <span id="config-warning-count">Ã¢â‚¬â€</span>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="metric-label">
+                        Parameters
+                    </div>
+                    <div
+                        id="config-parameter-count"
+                        class="metric-value loading"
+                    >
+                        Loading
+                    </div>
+                    <div class="metric-subtext">
+                        Sections:
+                        <span id="config-section-count">Ã¢â‚¬â€</span>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="metric-label">
+                        Profile Overrides
+                    </div>
+                    <div
+                        id="config-override-count"
+                        class="metric-value loading"
+                    >
+                        Loading
+                    </div>
+                    <div class="metric-subtext">
+                        Effective overridden parameters
+                    </div>
+                </article>
+
+            </div>
+
+            <div class="grid two-column config-summary-grid">
+
+                <article class="card">
+                    <h3 class="card-title">
+                        Snapshot Identity
+                    </h3>
+
+                    <div class="details">
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                Schema
+                            </span>
+                            <span
+                                id="config-schema"
+                                class="detail-value"
+                            >Ã¢â‚¬â€</span>
+                        </div>
+
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                Snapshot
+                            </span>
+                            <span
+                                id="config-snapshot"
+                                class="detail-value"
+                            >Ã¢â‚¬â€</span>
+                        </div>
+
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                Hash
+                            </span>
+                            <span
+                                id="config-hash"
+                                class="detail-value"
+                            >Ã¢â‚¬â€</span>
+                        </div>
+
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                Environment
+                            </span>
+                            <span
+                                id="config-environment"
+                                class="detail-value"
+                            >Ã¢â‚¬â€</span>
+                        </div>
+
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                Version
+                            </span>
+                            <span
+                                id="config-version"
+                                class="detail-value"
+                            >Ã¢â‚¬â€</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <h3 class="card-title">
+                        Provenance
+                    </h3>
+
+                    <div
+                        id="provenance-summary"
+                        class="provenance-summary"
+                    >
+                        Loading
+                    </div>
+                </article>
+
+            </div>
+
+            <article class="card safeguards-card">
+                <div class="section-heading">
+                    <div>
+                        <h3 class="card-title">
+                            Research Safeguards
+                        </h3>
+                        <div class="section-description">
+                            Configuration constraints protecting
+                            the research-only runtime boundary.
+                        </div>
+                    </div>
+
+                    <span
+                        id="execution-badge"
+                        class="badge success"
+                    >
+                        LOADING
+                    </span>
+                </div>
+
+                <div
+                    id="safeguard-grid"
+                    class="safeguard-grid"
+                ></div>
+            </article>
+
+            <article class="card configuration-browser">
+
+                <div class="section-heading">
+                    <div>
+                        <h3 class="card-title">
+                            Configuration Parameters
+                        </h3>
+                        <div class="section-description">
+                            Search or filter the effective
+                            configuration. Values cannot be edited
+                            from this console.
+                        </div>
+                    </div>
+
+                    <div
+                        id="visible-parameter-count"
+                        class="parameter-counter"
+                    >
+                        Ã¢â‚¬â€
+                    </div>
+                </div>
+
+                <div class="config-toolbar">
+                    <input
+                        id="config-search"
+                        class="config-search"
+                        type="search"
+                        placeholder="Search parameters..."
+                        autocomplete="off"
+                    >
+
+                    <select
+                        id="config-section-filter"
+                        class="config-filter"
+                    >
+                        <option value="">
+                            All sections
+                        </option>
+                    </select>
+
+                    <select
+                        id="config-provenance-filter"
+                        class="config-filter"
+                    >
+                        <option value="">
+                            All provenance
+                        </option>
+                        <option value="GLOBAL_DEFAULT">
+                            Global default
+                        </option>
+                        <option value="PROFILE">
+                            Profile
+                        </option>
+                        <option value="HARD_CONSTRAINT">
+                            Hard constraint
+                        </option>
+                    </select>
+                </div>
+
+                <div
+                    id="configuration-sections"
+                    class="configuration-sections"
+                ></div>
+
+                <div
+                    id="configuration-empty"
+                    class="empty-state"
+                    hidden
+                >
+                    No configuration parameters match the
+                    current filters.
+                </div>
+
+            </article>
+
+            <div class="footer">
+                AMRTE Research Console Ã‚Â· Configuration is read-only
+            </div>
+
+        </section>
+    </main>
+</div>
+
+<script src="/static/configuration.js"></script>
+</body>
+</html>
+
+

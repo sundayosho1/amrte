@@ -1,0 +1,13 @@
+Activate AMRTE's virtual environment:
+.\.venv\Scripts\Activate.ps1
+
+
+RUN THE APPLICATION:
+cd C:\wamp64\www\amrte
+.\.venv\Scripts\Activate.ps1
+python run_amrte.py
+
+
+python -m uvicorn amrte.web.app:app `
+    --host 127.0.0.1 `
+    --port 8000

@@ -1,0 +1,373 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+    <title>AMRTE Research Console</title>
+    <link
+        rel="stylesheet"
+        href="/static/console.css"
+    >
+</head>
+<body>
+<div class="shell">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <h1 class="brand-title">AMRTE</h1>
+            <div class="brand-subtitle">
+                Research Console
+            </div>
+        </div>
+
+        <nav class="nav">
+            <a class="nav-item active" href="/">
+                Command Centre
+            </a>
+            <a class="nav-item" href="/configuration">
+                Configuration
+            </a>
+            <a
+                class="nav-item"
+                href="/research-controls"
+            >
+                Research Controls
+            </a>
+            <a
+                class="nav-item"
+                href="/dataset-replay"
+            >
+                Dataset &amp; Replay
+            </a>
+            <a class="nav-item" href="/observability">
+                Observability
+            </a>
+            <a
+                class="nav-item"
+                href="/persistence-recovery"
+            >
+                Persistence &amp; Recovery
+            </a>
+            <a class="nav-item" href="/health-diagnostics">Health &amp; Diagnostics</a>
+            <a class="nav-item" href="/administration">
+                Administration
+            </a>
+            <a class="nav-item" href="/research-evidence">
+                Research Evidence &amp; Analytics
+            </a>
+            <a class="nav-item" href="/research-governance">
+                Research Governance &amp; Safety
+            </a>
+            <a class="nav-item" href="/operational-readiness">Operational Readiness &amp; Evidence</a>
+            <a href="/research-lifecycle-quality">Research Lifecycle &amp; Quality</a>        </nav>
+
+        <div class="safeguard">
+            <strong>Research-only runtime</strong>
+            Financial execution capability is prohibited.
+        </div>
+    </aside>
+
+    <main class="main">
+
+        <header class="topbar">
+            <h2 class="page-title">
+                Command Centre
+            </h2>
+
+            <div class="runtime-status">
+                <span
+                    id="runtime-status-dot"
+                    class="status-dot"
+                ></span>
+                Runtime:
+                <strong id="runtime-status-text">
+                    Loading
+                </strong>
+            </div>
+        </header>
+
+        <section class="content">
+
+            <div
+                id="dashboard-error"
+                class="banner error"
+                hidden
+            ></div>
+
+            <div class="banner">
+                <div>
+                    <div class="banner-title">
+                        AMRTE Research Environment
+                    </div>
+                    <div class="banner-text">
+                        Local operational console for
+                        deterministic research, persistence,
+                        recovery and diagnostics.
+                    </div>
+                </div>
+
+                <span class="badge success">
+                    EXECUTION PROHIBITED
+                </span>
+            </div>
+
+            <div class="grid metrics">
+
+                <article class="card">
+                    <div class="metric-label">
+                        Runtime State
+                    </div>
+                    <div
+                        id="runtime-state"
+                        class="metric-value loading"
+                    >
+                        Loading
+                    </div>
+                    <div class="metric-subtext">
+                        Operational:
+                        <span id="runtime-operational">Ã¢â‚¬â€</span>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="metric-label">
+                        Configuration
+                    </div>
+                    <div
+                        id="configuration-status"
+                        class="metric-value loading"
+                    >
+                        Loading
+                    </div>
+                    <div class="metric-subtext">
+                        Profile:
+                        <span id="configuration-profile">Ã¢â‚¬â€</span>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="metric-label">
+                        Recovery
+                    </div>
+                    <div
+                        id="recovery-outcome"
+                        class="metric-value loading"
+                    >
+                        Loading
+                    </div>
+                    <div class="metric-subtext">
+                        Confidence:
+                        <span id="recovery-confidence">Ã¢â‚¬â€</span>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="metric-label">
+                        Checkpoint
+                    </div>
+                    <div
+                        id="checkpoint-sequence"
+                        class="metric-value loading"
+                    >
+                        Loading
+                    </div>
+                    <div class="metric-subtext">
+                        Chain valid:
+                        <span id="chain-valid">Ã¢â‚¬â€</span>
+                    </div>
+                </article>
+
+            </div>
+
+            <div class="grid two-column">
+
+                <article class="card">
+                    <h3 class="card-title">
+                        Configuration Snapshot
+                    </h3>
+
+                    <div class="details">
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                Schema
+                            </span>
+                            <span
+                                id="configuration-schema"
+                                class="detail-value"
+                            >Ã¢â‚¬â€</span>
+                        </div>
+
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                Snapshot
+                            </span>
+                            <span
+                                id="configuration-snapshot"
+                                class="detail-value"
+                            >Ã¢â‚¬â€</span>
+                        </div>
+
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                Hash
+                            </span>
+                            <span
+                                id="configuration-hash"
+                                class="detail-value"
+                            >Ã¢â‚¬â€</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <h3 class="card-title">
+                        Recovery Status
+                    </h3>
+
+                    <div class="details">
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                Ready
+                            </span>
+                            <span
+                                id="recovery-ready"
+                                class="detail-value"
+                            >Ã¢â‚¬â€</span>
+                        </div>
+
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                Recovery epoch
+                            </span>
+                            <span
+                                id="recovery-epoch"
+                                class="detail-value"
+                            >Ã¢â‚¬â€</span>
+                        </div>
+
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                Recovered checkpoint
+                            </span>
+                            <span
+                                id="recovered-checkpoint"
+                                class="detail-value"
+                            >Ã¢â‚¬â€</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <h3 class="card-title">
+                        Persistence
+                    </h3>
+
+                    <div class="details">
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                Current checkpoint
+                            </span>
+                            <span
+                                id="checkpoint-id"
+                                class="detail-value"
+                            >Ã¢â‚¬â€</span>
+                        </div>
+
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                Previous checkpoint
+                            </span>
+                            <span
+                                id="checkpoint-previous"
+                                class="detail-value"
+                            >Ã¢â‚¬â€</span>
+                        </div>
+
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                Shutdown status
+                            </span>
+                            <span
+                                id="checkpoint-shutdown"
+                                class="detail-value"
+                            >Ã¢â‚¬â€</span>
+                        </div>
+
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                Fallback used
+                            </span>
+                            <span
+                                id="fallback-used"
+                                class="detail-value"
+                            >Ã¢â‚¬â€</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <h3 class="card-title">
+                        Runtime Safeguards
+                    </h3>
+
+                    <div class="details">
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                Environment
+                            </span>
+                            <span
+                                id="environment"
+                                class="detail-value"
+                            >Ã¢â‚¬â€</span>
+                        </div>
+
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                Research mode
+                            </span>
+                            <span
+                                id="research-mode"
+                                class="detail-value"
+                            >Ã¢â‚¬â€</span>
+                        </div>
+
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                Execution
+                            </span>
+                            <span
+                                id="execution-mode"
+                                class="detail-value"
+                            >Ã¢â‚¬â€</span>
+                        </div>
+
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                Version
+                            </span>
+                            <span
+                                id="application-version"
+                                class="detail-value"
+                            >Ã¢â‚¬â€</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+            <div class="footer">
+                AMRTE Research Console Ã‚Â· Read-only operational view
+            </div>
+
+        </section>
+    </main>
+</div>
+
+<script src="/static/console.js"></script>
+</body>
+</html>
+
+

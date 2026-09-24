@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+    <title>AMRTE Observability</title>
+    <link
+        rel="stylesheet"
+        href="/static/console.css"
+    >
+</head>
+
+<body class="research-controls-page">
+<div class="app-shell">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-mark">A</div>
+            <div>
+                <strong>AMRTE</strong>
+                <span>Research Console</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a class="nav-item" href="/">
+                Command Centre
+            </a>
+
+            <a class="nav-item" href="/configuration">
+                Configuration
+            </a>
+
+            <a class="nav-item" href="/research-controls">
+                Research Controls
+            </a>
+
+            <a class="nav-item" href="/dataset-replay">
+                Dataset &amp; Replay
+            </a>
+
+            <a class="nav-item active" href="/observability">
+                Observability
+            </a>
+
+            <span class="nav-item disabled">
+                Persistence &amp; Recovery
+            </span>
+
+            <span class="nav-item disabled">
+                Health &amp; Diagnostics
+            </span>
+
+            <span class="nav-item disabled">
+                Administration
+            </span>
+        </nav>
+
+        <div class="sidebar-boundary">
+            <strong>RESEARCH ONLY</strong>
+            <span>
+                Financial execution prohibited
+            </span>
+        </div>
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">
+                    Runtime visibility
+                </p>
+
+                <h1>
+                    Observability
+                </h1>
+
+                <p class="page-description">
+                    Read-only view of the authoritative
+                    runtime observability service.
+                </p>
+            </div>
+
+            <div class="status-cluster">
+                <span
+                    id="runtime-status"
+                    class="status-pill"
+                >
+                    Loading
+                </span>
+
+                <span class="status-pill">
+                    READ ONLY
+                </span>
+            </div>
+        </header>
+
+
+        <section class="safety-banner">
+            <strong>
+                Research observability only.
+            </strong>
+
+            <span>
+                This console cannot delete logs,
+                acknowledge alerts, run diagnostics,
+                change configuration, or enable
+                financial execution.
+            </span>
+        </section>
+
+
+        <section class="metric-grid">
+
+            <article class="metric-card">
+                <span class="metric-label">
+                    Observability Health
+                </span>
+                <strong
+                    id="observability-health"
+                    class="metric-value"
+                >
+                    ?
+                </strong>
+            </article>
+
+            <article class="metric-card">
+                <span class="metric-label">
+                    Chain Integrity
+                </span>
+                <strong
+                    id="chain-valid"
+                    class="metric-value"
+                >
+                    ?
+                </strong>
+            </article>
+
+            <article class="metric-card">
+                <span class="metric-label">
+                    Retained Events
+                </span>
+                <strong
+                    id="retained-events"
+                    class="metric-value"
+                >
+                    ?
+                </strong>
+            </article>
+
+            <article class="metric-card">
+                <span class="metric-label">
+                    Recovery Epoch
+                </span>
+                <strong
+                    id="recovery-epoch"
+                    class="metric-value"
+                >
+                    ?
+                </strong>
+            </article>
+
+        </section>
+
+
+        <section class="panel-grid">
+
+            <article class="panel">
+                <div class="panel-heading">
+                    <div>
+                        <p class="eyebrow">
+                            Authority
+                        </p>
+                        <h2>
+                            Runtime Observability
+                        </h2>
+                    </div>
+                </div>
+
+                <div
+                    id="authority-details"
+                    class="detail-list"
+                ></div>
+            </article>
+
+
+            <article class="panel">
+                <div class="panel-heading">
+                    <div>
+                        <p class="eyebrow">
+                            Safety
+                        </p>
+                        <h2>
+                            Execution Boundary
+                        </h2>
+                    </div>
+                </div>
+
+                <div
+                    id="execution-boundary"
+                    class="detail-list"
+                ></div>
+            </article>
+
+        </section>
+
+
+        <section class="panel-grid">
+
+            <article class="panel">
+                <div class="panel-heading">
+                    <div>
+                        <p class="eyebrow">
+                            Distribution
+                        </p>
+                        <h2>
+                            Severity
+                        </h2>
+                    </div>
+                </div>
+
+                <div
+                    id="severity-statistics"
+                    class="detail-list"
+                ></div>
+            </article>
+
+
+            <article class="panel">
+                <div class="panel-heading">
+                    <div>
+                        <p class="eyebrow">
+                            Distribution
+                        </p>
+                        <h2>
+                            Categories
+                        </h2>
+                    </div>
+                </div>
+
+                <div
+                    id="category-statistics"
+                    class="detail-list"
+                ></div>
+            </article>
+
+        </section>
+
+
+        <section class="panel-grid">
+
+            <article class="panel">
+                <div class="panel-heading">
+                    <div>
+                        <p class="eyebrow">
+                            Event semantics
+                        </p>
+                        <h2>
+                            Classifications
+                        </h2>
+                    </div>
+                </div>
+
+                <div
+                    id="classification-statistics"
+                    class="detail-list"
+                ></div>
+            </article>
+
+
+            <article class="panel">
+                <div class="panel-heading">
+                    <div>
+                        <p class="eyebrow">
+                            Runtime
+                        </p>
+                        <h2>
+                            Registered Services
+                        </h2>
+                    </div>
+                </div>
+
+                <div
+                    id="registered-services"
+                    class="detail-list"
+                ></div>
+            </article>
+
+        </section>
+
+
+        <section class="panel">
+
+            <div class="panel-heading">
+                <div>
+                    <p class="eyebrow">
+                        Boundary
+                    </p>
+                    <h2>
+                        Read Capabilities
+                    </h2>
+                </div>
+            </div>
+
+            <div
+                id="capabilities"
+                class="detail-list"
+            ></div>
+
+        </section>
+
+
+        <section class="panel">
+
+            <div class="panel-heading">
+                <div>
+                    <p class="eyebrow">
+                        Current process
+                    </p>
+                    <h2>
+                        Recent Events
+                    </h2>
+                </div>
+
+                <div class="toolbar">
+                    <input
+                        id="event-search"
+                        type="search"
+                        placeholder="Search events"
+                        aria-label="Search events"
+                    >
+                </div>
+            </div>
+
+            <p class="panel-note">
+                Displays up to 100 retained events
+                from the current runtime process.
+                Chain verification applies to this
+                retained process event chain.
+            </p>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Sequence</th>
+                        <th>Severity</th>
+                        <th>Category</th>
+                        <th>Event Code</th>
+                        <th>Module</th>
+                        <th>Message</th>
+                        <th>Correlation</th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="event-table-body">
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
+
+        <section
+            id="error-panel"
+            class="panel"
+            hidden
+        >
+            <div class="panel-heading">
+                <h2>
+                    Observability data unavailable
+                </h2>
+            </div>
+
+            <p id="error-message"></p>
+        </section>
+
+    </main>
+</div>
+
+<script src="/static/observability.js"></script>
+</body>
+</html>

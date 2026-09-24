@@ -1,0 +1,229 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+    <title>Research Governance &amp; Safety | AMRTE</title>
+    <link rel="stylesheet" href="/static/console.css">
+</head>
+<body class="research-controls-page research-governance-page">
+<div class="shell">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-mark">A</div>
+            <div>
+                <div class="brand-title">AMRTE</div>
+                <div class="brand-subtitle">Research Console</div>
+            </div>
+        </div>
+
+        <nav class="nav">
+            <a href="/">Command Centre</a>
+            <a href="/configuration">Configuration</a>
+            <a href="/research-controls">Research Controls</a>
+            <a href="/dataset-replay">Dataset &amp; Replay</a>
+            <a href="/observability">Observability</a>
+            <a href="/persistence-recovery">Persistence &amp; Recovery</a>
+            <a href="/health-diagnostics">Health &amp; Diagnostics</a>
+            <a href="/administration">Administration</a>
+            <a href="/research-evidence">Research Evidence &amp; Analytics</a>
+            <a
+                href="/research-governance"
+                class="active"
+                aria-current="page"
+            >Research Governance &amp; Safety</a>
+            <a class="nav-item" href="/operational-readiness">Operational Readiness &amp; Evidence</a>
+            <a href="/research-lifecycle-quality">Research Lifecycle &amp; Quality</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <span class="badge">RESEARCH-ONLY</span>
+            <span class="badge">READ-ONLY</span>
+        </div>
+    </aside>
+
+    <main class="main">
+
+        <header class="page-header">
+            <div>
+                <div class="eyebrow">
+                    GOVERNANCE ASSURANCE
+                </div>
+                <h1>Research Governance &amp; Safety</h1>
+                <p class="page-intro">
+                    Read-only assurance view of implemented governance
+                    capabilities, immutable safeguards, runtime authority,
+                    promotion governance and the prohibited execution boundary.
+                </p>
+            </div>
+        </header>
+
+        <div
+            id="research-governance-error"
+            class="notice"
+            hidden
+        ></div>
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <div class="eyebrow">AUTHORITY</div>
+                    <h2>Runtime Authority</h2>
+                </div>
+            </div>
+
+            <p>
+                Governance capability availability does not establish
+                active runtime authority or a current governance state.
+            </p>
+
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <span class="metric-label">IMPLEMENTED</span>
+                    <strong id="authority-implemented">â€”</strong>
+                </div>
+
+                <div class="metric-card">
+                    <span class="metric-label">RUNTIME-ACTIVE</span>
+                    <strong id="authority-runtime-active">â€”</strong>
+                </div>
+
+                <div class="metric-card">
+                    <span class="metric-label">
+                        CURRENT-STATE-AVAILABLE
+                    </span>
+                    <strong id="authority-current-state">â€”</strong>
+                </div>
+
+                <div class="metric-card">
+                    <span class="metric-label">STATUS</span>
+                    <strong id="authority-status">â€”</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <div class="eyebrow">CAPABILITY</div>
+                    <h2>Governance Capability</h2>
+                </div>
+            </div>
+
+            <p>
+                IMPLEMENTED does not mean RUNTIME-ACTIVE.
+                RUNTIME-ACTIVE does not mean
+                CURRENT-STATE-AVAILABLE.
+                An implemented but non-authoritative capability is
+                presented as AVAILABLE_NOT_ACTIVATED.
+            </p>
+
+            <div id="governance-capabilities"></div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <div class="eyebrow">LIFECYCLE</div>
+                    <h2>Lifecycle Governance</h2>
+                </div>
+            </div>
+            <div id="lifecycle-governance"></div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <div class="eyebrow">SAFETY</div>
+                    <h2>System Safety</h2>
+                </div>
+            </div>
+            <div id="system-safety"></div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <div class="eyebrow">QUALITY</div>
+                    <h2>Observation Quality</h2>
+                </div>
+            </div>
+            <div id="observation-quality"></div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <div class="eyebrow">RELIABILITY</div>
+                    <h2>Research Reliability</h2>
+                </div>
+            </div>
+            <div id="research-reliability"></div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <div class="eyebrow">TEMPORAL</div>
+                    <h2>Temporal Quality</h2>
+                </div>
+            </div>
+            <div id="temporal-quality"></div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <div class="eyebrow">PROMOTION</div>
+                    <h2>Promotion Governance</h2>
+                </div>
+            </div>
+            <div id="promotion-governance"></div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <div class="eyebrow">RECOVERY</div>
+                    <h2>Recovery Governance</h2>
+                </div>
+            </div>
+            <div id="recovery-governance"></div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <div class="eyebrow">CONFIGURATION</div>
+                    <h2>Configuration Safeguards</h2>
+                </div>
+            </div>
+            <div id="configuration-safeguards"></div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <div class="eyebrow">BOUNDARY</div>
+                    <h2>Execution Boundary</h2>
+                </div>
+            </div>
+
+            <p>
+                Financial execution is PROHIBITED.
+                This console provides research governance assurance only.
+            </p>
+
+            <div id="execution-boundary"></div>
+        </section>
+
+    </main>
+</div>
+
+<script src="/static/research-governance.js"></script>
+</body>
+</html>

@@ -1,0 +1,453 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+    <title>Health &amp; Diagnostics | AMRTE</title>
+    <link
+        rel="stylesheet"
+        href="/static/console.css"
+    >
+</head>
+
+<body class="research-controls-page health-diagnostics-page">
+<div class="shell">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-mark">A</div>
+            <div>
+                <div class="brand-name">AMRTE</div>
+                <div class="brand-subtitle">
+                    Research Console
+                </div>
+            </div>
+        </div>
+
+        <nav class="nav">
+            <a class="nav-item" href="/">Command Centre</a>
+
+            <a class="nav-item" href="/configuration">
+                Configuration
+            </a>
+
+            <a class="nav-item" href="/research-controls">
+                Research Controls
+            </a>
+
+            <a class="nav-item" href="/dataset-replay">
+                Dataset &amp; Replay
+            </a>
+
+            <a class="nav-item" href="/observability">
+                Observability
+            </a>
+
+            <a class="nav-item" href="/persistence-recovery">
+                Persistence &amp; Recovery
+            </a>
+
+            <a class="nav-item active" href="/health-diagnostics">
+                Health &amp; Diagnostics
+            </a>
+
+            <a class="nav-item" href="/administration">
+                Administration
+            </a>
+            <a class="nav-item" href="/research-evidence">
+                Research Evidence &amp; Analytics
+            </a>
+            <a class="nav-item" href="/research-governance">
+                Research Governance &amp; Safety
+            </a>
+            <a class="nav-item" href="/operational-readiness">Operational Readiness &amp; Evidence</a>
+            <a href="/research-lifecycle-quality">Research Lifecycle &amp; Quality</a>        </nav>
+
+        <div class="safeguard">
+            <strong>RESEARCH-ONLY</strong>
+            <span>
+                Financial execution prohibited
+            </span>
+        </div>
+    </aside>
+
+    <main class="main">
+
+        <header class="topbar">
+            <div>
+                <div class="eyebrow">
+                    SYSTEM ASSURANCE
+                </div>
+
+                <h1>
+                    Health &amp; Diagnostics
+                </h1>
+
+                <p>
+                    Read-only projection of
+                    authoritative runtime health,
+                    readiness and safety evidence.
+                </p>
+            </div>
+
+            <div class="status-cluster">
+                <span class="status-pill">
+                    READ-ONLY
+                </span>
+
+                <span class="status-pill">
+                    RESEARCH-ONLY
+                </span>
+            </div>
+        </header>
+
+        <section
+            id="health-diagnostics-error"
+            class="notice-card"
+            hidden
+        >
+            Health information is currently
+            unavailable.
+        </section>
+
+        <section class="dashboard-grid">
+
+            <article class="console-card">
+                <div class="card-heading">
+                    <div>
+                        <div class="eyebrow">
+                            RUNTIME
+                        </div>
+                        <h2>System Readiness</h2>
+                    </div>
+
+                    <span
+                        id="readiness-badge"
+                        class="status-pill"
+                    >
+                        UNKNOWN
+                    </span>
+                </div>
+
+                <dl class="detail-list">
+                    <div>
+                        <dt>Engine state</dt>
+                        <dd id="engine-state">
+                            ?
+                        </dd>
+                    </div>
+
+                    <div>
+                        <dt>Environment</dt>
+                        <dd id="runtime-environment">
+                            ?
+                        </dd>
+                    </div>
+
+                    <div>
+                        <dt>Version</dt>
+                        <dd id="runtime-version">
+                            ?
+                        </dd>
+                    </div>
+
+                    <div>
+                        <dt>Readiness</dt>
+                        <dd id="readiness-value">
+                            ?
+                        </dd>
+                    </div>
+
+                    <div>
+                        <dt>Reasons</dt>
+                        <dd id="readiness-reasons">
+                            ?
+                        </dd>
+                    </div>
+                </dl>
+            </article>
+
+            <article class="console-card">
+                <div class="card-heading">
+                    <div>
+                        <div class="eyebrow">
+                            AUTHORITY
+                        </div>
+                        <h2>Mandatory Services</h2>
+                    </div>
+                </div>
+
+                <div
+                    id="mandatory-services"
+                    class="table-wrap"
+                >
+                    Loading?
+                </div>
+            </article>
+
+            <article class="console-card">
+                <div class="card-heading">
+                    <div>
+                        <div class="eyebrow">
+                            TELEMETRY
+                        </div>
+                        <h2>
+                            Observability Health
+                        </h2>
+                    </div>
+                </div>
+
+                <dl class="detail-list">
+                    <div>
+                        <dt>Status</dt>
+                        <dd id="observability-status">
+                            ?
+                        </dd>
+                    </div>
+
+                    <div>
+                        <dt>Chain valid</dt>
+                        <dd id="observability-chain">
+                            ?
+                        </dd>
+                    </div>
+
+                    <div>
+                        <dt>
+                            Dropped diagnostics
+                        </dt>
+                        <dd id="dropped-diagnostics">
+                            ?
+                        </dd>
+                    </div>
+                </dl>
+            </article>
+
+            <article class="console-card">
+                <div class="card-heading">
+                    <div>
+                        <div class="eyebrow">
+                            DURABILITY
+                        </div>
+                        <h2>
+                            Persistence &amp; Recovery
+                        </h2>
+                    </div>
+                </div>
+
+                <dl class="detail-list">
+                    <div>
+                        <dt>Repository</dt>
+                        <dd id="repository-type">
+                            ?
+                        </dd>
+                    </div>
+
+                    <div>
+                        <dt>Storage health</dt>
+                        <dd id="storage-health">
+                            ?
+                        </dd>
+                    </div>
+
+                    <div>
+                        <dt>Chain valid</dt>
+                        <dd id="persistence-chain">
+                            ?
+                        </dd>
+                    </div>
+
+                    <div>
+                        <dt>Recovery ready</dt>
+                        <dd id="recovery-ready">
+                            ?
+                        </dd>
+                    </div>
+
+                    <div>
+                        <dt>Recovery epoch</dt>
+                        <dd id="recovery-epoch">
+                            ?
+                        </dd>
+                    </div>
+                </dl>
+            </article>
+
+            <article class="console-card">
+                <div class="card-heading">
+                    <div>
+                        <div class="eyebrow">
+                            IDENTITY
+                        </div>
+                        <h2>
+                            Configuration Identity
+                        </h2>
+                    </div>
+                </div>
+
+                <dl class="detail-list">
+                    <div>
+                        <dt>Snapshot</dt>
+                        <dd id="configuration-snapshot">
+                            ?
+                        </dd>
+                    </div>
+
+                    <div>
+                        <dt>Hash</dt>
+                        <dd
+                            id="configuration-hash"
+                            class="mono-value"
+                        >
+                            ?
+                        </dd>
+                    </div>
+
+                    <div>
+                        <dt>Validation</dt>
+                        <dd id="configuration-validation">
+                            ?
+                        </dd>
+                    </div>
+
+                    <div>
+                        <dt>Schema</dt>
+                        <dd id="configuration-schema">
+                            ?
+                        </dd>
+                    </div>
+                </dl>
+            </article>
+
+            <article class="console-card">
+                <div class="card-heading">
+                    <div>
+                        <div class="eyebrow">
+                            SAFETY
+                        </div>
+                        <h2>Execution Boundary</h2>
+                    </div>
+                </div>
+
+                <dl class="detail-list">
+                    <div>
+                        <dt>Status</dt>
+                        <dd id="execution-status">
+                            ?
+                        </dd>
+                    </div>
+
+                    <div>
+                        <dt>Provider</dt>
+                        <dd id="execution-provider">
+                            ?
+                        </dd>
+                    </div>
+
+                    <div>
+                        <dt>Financial execution</dt>
+                        <dd id="financial-execution">
+                            ?
+                        </dd>
+                    </div>
+
+                    <div>
+                        <dt>Broker connectivity</dt>
+                        <dd id="broker-connectivity">
+                            ?
+                        </dd>
+                    </div>
+
+                    <div>
+                        <dt>Account connectivity</dt>
+                        <dd id="account-connectivity">
+                            ?
+                        </dd>
+                    </div>
+                </dl>
+            </article>
+
+            <article class="console-card">
+                <div class="card-heading">
+                    <div>
+                        <div class="eyebrow">
+                            PERMISSIONS
+                        </div>
+                        <h2>
+                            Diagnostic Capabilities
+                        </h2>
+                    </div>
+                </div>
+
+                <div
+                    id="diagnostic-capabilities"
+                    class="table-wrap"
+                >
+                    Loading?
+                </div>
+
+                <p class="card-note">
+                    This console presents health
+                    evidence only. Operational
+                    diagnostic and recovery actions
+                    are intentionally unavailable.
+                </p>
+            </article>
+
+            <article class="console-card">
+                <div class="card-heading">
+                    <div>
+                        <div class="eyebrow">
+                            SOURCE
+                        </div>
+                        <h2>Health Authority</h2>
+                    </div>
+                </div>
+
+                <dl class="detail-list">
+                    <div>
+                        <dt>Service</dt>
+                        <dd id="health-service">
+                            ?
+                        </dd>
+                    </div>
+
+                    <div>
+                        <dt>Source</dt>
+                        <dd id="health-source">
+                            ?
+                        </dd>
+                    </div>
+
+                    <div>
+                        <dt>
+                            Parallel health engine
+                        </dt>
+                        <dd id="parallel-health">
+                            ?
+                        </dd>
+                    </div>
+
+                    <div>
+                        <dt>
+                            Diagnostic execution
+                        </dt>
+                        <dd id="diagnostic-execution">
+                            ?
+                        </dd>
+                    </div>
+                </dl>
+            </article>
+
+        </section>
+    </main>
+</div>
+
+<script src="/static/health-diagnostics.js"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,254 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+    <title>Operational Readiness &amp; Evidence | AMRTE</title>
+    <link rel="stylesheet" href="/static/console.css">
+</head>
+<body class="research-controls-page research-governance-page operational-readiness-page">
+<div class="shell">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-mark">A</div>
+            <div>
+                <div class="brand-title">AMRTE</div>
+                <div class="brand-subtitle">Research Console</div>
+            </div>
+        </div>
+
+        <nav class="nav">
+            <a href="/">Command Centre</a>
+            <a href="/configuration">Configuration</a>
+            <a href="/research-controls">Research Controls</a>
+            <a href="/dataset-replay">Dataset &amp; Replay</a>
+            <a href="/observability">Observability</a>
+            <a href="/persistence-recovery">Persistence &amp; Recovery</a>
+            <a href="/health-diagnostics">Health &amp; Diagnostics</a>
+            <a href="/administration">Administration</a>
+            <a href="/research-evidence">Research Evidence &amp; Analytics</a>
+            <a href="/research-governance">Research Governance &amp; Safety</a>
+            <a
+                href="/operational-readiness"
+                class="active"
+                aria-current="page"
+            >Operational Readiness &amp; Evidence</a>
+            <a href="/research-lifecycle-quality">Research Lifecycle &amp; Quality</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <span class="badge">RESEARCH-ONLY</span>
+            <span class="badge">READ-ONLY</span>
+        </div>
+    </aside>
+
+    <main class="main">
+
+        <header class="page-header">
+            <div>
+                <div class="eyebrow">OPERATIONAL ASSURANCE</div>
+                <h1>Operational Readiness &amp; Evidence</h1>
+                <p class="page-intro">
+                    Read-only evidence view of runtime lifecycle,
+                    persistence and recovery, observability, health,
+                    Windows host qualification and the research-only
+                    safety boundary.
+                </p>
+            </div>
+        </header>
+
+        <div
+            id="operational-readiness-error"
+            class="notice"
+            hidden
+        ></div>
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <div class="eyebrow">AUTHORITY</div>
+                    <h2>Operational Authority</h2>
+                </div>
+            </div>
+
+            <p>
+                Evidence states distinguish what is implemented,
+                configured, observed, qualified, unavailable or not
+                verified. They do not create runtime authority.
+            </p>
+
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <span class="metric-label">ENVIRONMENT</span>
+                    <strong id="runtime-environment">—</strong>
+                </div>
+
+                <div class="metric-card">
+                    <span class="metric-label">RUNTIME AUTHORITY</span>
+                    <strong id="runtime-authority">—</strong>
+                </div>
+
+                <div class="metric-card">
+                    <span class="metric-label">EXECUTION</span>
+                    <strong id="execution-status">—</strong>
+                </div>
+
+                <div class="metric-card">
+                    <span class="metric-label">WINDOWS NATIVE</span>
+                    <strong id="windows-native-status">—</strong>
+                </div>
+            </div>
+        </section>
+
+        <section
+            id="runtime-lifecycle"
+            class="panel"
+        >
+            <div class="panel-header">
+                <div>
+                    <div class="eyebrow">LIFECYCLE</div>
+                    <h2>Runtime Lifecycle</h2>
+                </div>
+            </div>
+            <div class="evidence-state" id="runtime-lifecycle-state">—</div>
+            <div id="runtime-lifecycle-evidence"></div>
+            <div class="limitations" id="runtime-lifecycle-limitations"></div>
+        </section>
+
+        <section
+            id="persistence-recovery"
+            class="panel"
+        >
+            <div class="panel-header">
+                <div>
+                    <div class="eyebrow">CONTINUITY</div>
+                    <h2>Persistence &amp; Recovery</h2>
+                </div>
+            </div>
+            <div class="evidence-state" id="persistence-recovery-state">—</div>
+            <div id="persistence-recovery-evidence"></div>
+            <div class="limitations" id="persistence-recovery-limitations"></div>
+        </section>
+
+        <section
+            id="observability-readiness"
+            class="panel"
+        >
+            <div class="panel-header">
+                <div>
+                    <div class="eyebrow">OBSERVABILITY</div>
+                    <h2>Observability Readiness</h2>
+                </div>
+            </div>
+            <div class="evidence-state" id="observability-state">—</div>
+            <div id="observability-evidence"></div>
+            <div class="limitations" id="observability-limitations"></div>
+        </section>
+
+        <section
+            id="health-diagnostics"
+            class="panel"
+        >
+            <div class="panel-header">
+                <div>
+                    <div class="eyebrow">HEALTH</div>
+                    <h2>Health &amp; Diagnostics</h2>
+                </div>
+            </div>
+            <div class="evidence-state" id="health-diagnostics-state">—</div>
+            <div id="health-diagnostics-evidence"></div>
+            <div class="limitations" id="health-diagnostics-limitations"></div>
+        </section>
+
+        <section
+            id="windows-host"
+            class="panel"
+        >
+            <div class="panel-header">
+                <div>
+                    <div class="eyebrow">WINDOWS HOST</div>
+                    <h2>Windows Host Readiness</h2>
+                </div>
+            </div>
+
+            <p>
+                Native Windows service/process-manager qualification
+                remains explicitly separate from observed Windows
+                execution evidence.
+            </p>
+
+            <div class="evidence-state" id="windows-host-state">—</div>
+            <div id="windows-host-evidence"></div>
+            <div class="limitations" id="windows-host-limitations"></div>
+        </section>
+
+        <section
+            id="research-safety"
+            class="panel"
+        >
+            <div class="panel-header">
+                <div>
+                    <div class="eyebrow">BOUNDARY</div>
+                    <h2>Research Safety</h2>
+                </div>
+            </div>
+
+            <p>
+                Financial execution is PROHIBITED. This page provides
+                operational evidence only and exposes no process-control
+                operation.
+            </p>
+
+            <div class="evidence-state" id="research-safety-state">—</div>
+            <div id="research-safety-evidence"></div>
+            <div class="limitations" id="research-safety-limitations"></div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <div class="eyebrow">DIAGNOSTICS</div>
+                    <h2>Deployment Diagnostics Capability</h2>
+                </div>
+            </div>
+
+            <p>
+                Deployment diagnostics may be implemented without being
+                runtime-active, authoritative, or a source of current
+                runtime state.
+            </p>
+
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <span class="metric-label">IMPLEMENTATION</span>
+                    <strong id="deployment-implementation">—</strong>
+                </div>
+
+                <div class="metric-card">
+                    <span class="metric-label">RUNTIME AUTHORITY</span>
+                    <strong id="deployment-authority">—</strong>
+                </div>
+
+                <div class="metric-card">
+                    <span class="metric-label">RUNTIME ACTIVE</span>
+                    <strong id="deployment-active">—</strong>
+                </div>
+
+                <div class="metric-card">
+                    <span class="metric-label">CURRENT STATE</span>
+                    <strong id="deployment-current-state">—</strong>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<script src="/static/operational-readiness.js"></script>
+</body>
+</html>
+

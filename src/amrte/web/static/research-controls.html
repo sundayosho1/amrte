@@ -1,0 +1,345 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>AMRTE Research Controls</title>
+    <link
+        rel="stylesheet"
+        href="/static/console.css"
+    >
+</head>
+<body class="research-controls-page">
+<div class="shell">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-mark">A</div>
+            <div>
+                <strong>AMRTE</strong>
+                <span>Research Console</span>
+            </div>
+        </div>
+
+        <nav class="nav">
+            <a
+                class="nav-item"
+                href="/"
+            >
+                Command Centre
+            </a>
+
+            <a
+                class="nav-item"
+                href="/configuration"
+            >
+                Configuration
+            </a>
+
+            <a
+                class="nav-item active"
+                href="/research-controls"
+            >
+                Research Controls
+            </a>
+
+            <a
+                class="nav-item"
+                href="/dataset-replay"
+            >
+                Dataset &amp; Replay
+            </a>
+
+            <a class="nav-item" href="/observability">
+                Observability
+            </a>
+
+            <a
+                class="nav-item"
+                href="/persistence-recovery"
+            >
+                Persistence &amp; Recovery
+            </a>
+
+            <a class="nav-item" href="/health-diagnostics">Health &amp; Diagnostics</a>
+
+            <a class="nav-item" href="/administration">
+                Administration
+            </a>
+            <a class="nav-item" href="/research-evidence">
+                Research Evidence &amp; Analytics
+            </a>
+            <a class="nav-item" href="/research-governance">
+                Research Governance &amp; Safety
+            </a>
+            <a class="nav-item" href="/operational-readiness">Operational Readiness &amp; Evidence</a>
+            <a href="/research-lifecycle-quality">Research Lifecycle &amp; Quality</a>        </nav>
+
+        <div class="safeguard">
+            <strong>Research-only runtime</strong>
+            <span>
+                Financial execution capability
+                is prohibited.
+            </span>
+        </div>
+    </aside>
+
+    <main class="main">
+
+        <header class="topbar">
+            <div>
+                <h1>Research Controls</h1>
+                <p>
+                    Runtime authority and governed
+                    research-control capability
+                </p>
+            </div>
+
+            <div class="runtime-status">
+                <span
+                    id="runtime-status-dot"
+                    class="status-dot"
+                ></span>
+                Runtime:
+                <strong id="runtime-state">
+                    Loading
+                </strong>
+            </div>
+        </header>
+
+        <section class="hero-banner">
+            <div>
+                <span class="eyebrow">
+                    Runtime Authority
+                </span>
+
+                <h2>
+                    Research Control Authority
+                </h2>
+
+                <p>
+                    Read-only view of the control
+                    capabilities exposed by the
+                    authoritative AMRTE runtime.
+                </p>
+            </div>
+
+            <div class="hero-status">
+                <span class="badge">
+                    READ ONLY
+                </span>
+            </div>
+        </section>
+
+        <section class="metrics">
+
+            <article class="metric-card">
+                <span class="metric-label">
+                    Runtime
+                </span>
+                <strong
+                    class="metric-value"
+                    id="metric-runtime"
+                >
+                    Ã¢â‚¬â€
+                </strong>
+                <span class="metric-detail">
+                    Active engine state
+                </span>
+            </article>
+
+            <article class="metric-card">
+                <span class="metric-label">
+                    Environment
+                </span>
+                <strong
+                    class="metric-value"
+                    id="metric-environment"
+                >
+                    Ã¢â‚¬â€
+                </strong>
+                <span class="metric-detail">
+                    Runtime environment
+                </span>
+            </article>
+
+            <article class="metric-card">
+                <span class="metric-label">
+                    Control Authority
+                </span>
+                <strong
+                    class="metric-value"
+                    id="metric-authority"
+                >
+                    Ã¢â‚¬â€
+                </strong>
+                <span class="metric-detail">
+                    Authoritative control service
+                </span>
+            </article>
+
+            <article class="metric-card">
+                <span class="metric-label">
+                    Execution
+                </span>
+                <strong
+                    class="metric-value"
+                    id="metric-execution"
+                >
+                    Ã¢â‚¬â€
+                </strong>
+                <span class="metric-detail">
+                    Financial execution boundary
+                </span>
+            </article>
+
+        </section>
+
+        <section class="content-grid">
+
+            <article class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h3>Authority Status</h3>
+                        <p>
+                            Current runtime control
+                            ownership
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="detail-list"
+                    id="authority-details"
+                >
+                    Loading authorityÃ¢â‚¬Â¦
+                </div>
+            </article>
+
+            <article class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h3>Execution Boundary</h3>
+                        <p>
+                            Runtime execution
+                            safeguard
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="detail-list"
+                    id="execution-details"
+                >
+                    Loading boundaryÃ¢â‚¬Â¦
+                </div>
+            </article>
+
+        </section>
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <h3>Governed Research Controls</h3>
+                    <p>
+                        Controls defined by the
+                        dashboard domain and their
+                        current runtime availability.
+                    </p>
+                </div>
+
+                <span
+                    class="badge"
+                    id="control-count"
+                >
+                    Ã¢â‚¬â€
+                </span>
+            </div>
+
+            <div
+                class="control-grid"
+                id="governed-controls"
+            >
+                Loading controlsÃ¢â‚¬Â¦
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <h3>
+                        Runtime Service Authority
+                    </h3>
+                    <p>
+                        Candidate control services
+                        registered in the active
+                        engine registry.
+                    </p>
+                </div>
+            </div>
+
+            <div
+                class="authority-grid"
+                id="control-services"
+            >
+                Loading servicesÃ¢â‚¬Â¦
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <h3>Registered Services</h3>
+                    <p>
+                        Services currently owned by
+                        the authoritative runtime.
+                    </p>
+                </div>
+
+                <span
+                    class="badge"
+                    id="service-count"
+                >
+                    Ã¢â‚¬â€
+                </span>
+            </div>
+
+            <div
+                class="service-registry-grid"
+                id="registered-services"
+            >
+                Loading registered services?
+            </div>
+        </section>
+
+        <section class="boundary-notice">
+            <strong>
+                No runtime mutation is available
+                from this page.
+            </strong>
+
+            <span>
+                Pause, resume and other governed
+                research controls remain unavailable
+                until an authoritative control
+                service is integrated into the
+                persistent runtime lifecycle.
+            </span>
+        </section>
+
+        <footer class="console-footer">
+            AMRTE Research Console Ã‚Â·
+            Research Controls Ã‚Â· Read Only
+        </footer>
+
+    </main>
+</div>
+
+<script src="/static/research-controls.js"></script>
+</body>
+</html>
+
+

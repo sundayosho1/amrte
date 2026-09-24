@@ -1,0 +1,2 @@
+"""Authoritative AMRTE core services."""
+

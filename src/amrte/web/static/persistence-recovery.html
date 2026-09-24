@@ -1,0 +1,554 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>
+        AMRTE | Persistence &amp; Recovery
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="/static/console.css"
+    >
+</head>
+
+<body class="research-controls-page persistence-recovery-page">
+<div class="shell">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-mark">A</div>
+
+            <div>
+                <strong>AMRTE</strong>
+                <span>Research Console</span>
+            </div>
+        </div>
+
+        <nav class="nav">
+            <a
+                class="nav-item"
+                href="/"
+            >
+                Command Centre
+            </a>
+
+            <a
+                class="nav-item"
+                href="/configuration"
+            >
+                Configuration
+            </a>
+
+            <a
+                class="nav-item"
+                href="/research-controls"
+            >
+                Research Controls
+            </a>
+
+            <a
+                class="nav-item"
+                href="/dataset-replay"
+            >
+                Dataset &amp; Replay
+            </a>
+
+            <a
+                class="nav-item"
+                href="/observability"
+            >
+                Observability
+            </a>
+
+            <a
+                class="nav-item active"
+                href="/persistence-recovery"
+            >
+                Persistence &amp; Recovery
+            </a>
+
+            <a class="nav-item" href="/health-diagnostics">Health &amp; Diagnostics</a>
+
+            <a class="nav-item" href="/administration">
+                Administration
+            </a>
+            <a class="nav-item" href="/research-evidence">
+                Research Evidence &amp; Analytics
+            </a>
+            <a class="nav-item" href="/research-governance">
+                Research Governance &amp; Safety
+            </a>
+            <a class="nav-item" href="/operational-readiness">Operational Readiness &amp; Evidence</a>
+            <a href="/research-lifecycle-quality">Research Lifecycle &amp; Quality</a>        </nav>
+
+        <div class="safeguard">
+            <strong>Research-only boundary</strong>
+            <span>
+                Financial execution is prohibited.
+            </span>
+        </div>
+    </aside>
+
+
+    <main class="main">
+
+        <header class="topbar">
+            <div>
+                <h1>
+                    Persistence &amp; Recovery
+                </h1>
+
+                <p>
+                    Read-only checkpoint,
+                    durability and recovery
+                    authority.
+                </p>
+            </div>
+
+            <div class="status-cluster">
+                <span class="status-pill">
+                    <span
+                        id="runtime-status-dot"
+                        class="status-dot"
+                    ></span>
+
+                    <span id="runtime-state">
+                        LOADING
+                    </span>
+                </span>
+
+                <span class="status-pill">
+                    READ ONLY
+                </span>
+            </div>
+        </header>
+
+
+        <section class="hero-banner">
+            <div>
+                <span class="eyebrow">
+                    DURABILITY AUTHORITY
+                </span>
+
+                <h2>
+                    Checkpoint lineage and
+                    recovery readiness
+                </h2>
+
+                <p>
+                    Observe the authoritative
+                    runtime persistence repository,
+                    checkpoint chain, storage state,
+                    recovery epoch and durability
+                    safeguards without modifying
+                    persisted state.
+                </p>
+            </div>
+
+            <div class="hero-status">
+                <span
+                    id="chain-badge"
+                    class="badge"
+                >
+                    LOADING
+                </span>
+            </div>
+        </section>
+
+
+        <section class="grid metrics">
+
+            <article class="card metric-card">
+                <span class="metric-label">
+                    Checkpoint
+                </span>
+
+                <strong
+                    id="metric-checkpoint"
+                    class="metric-value"
+                >
+                    ?
+                </strong>
+
+                <span class="metric-detail">
+                    Authoritative latest checkpoint
+                </span>
+            </article>
+
+
+            <article class="card metric-card">
+                <span class="metric-label">
+                    Chain Integrity
+                </span>
+
+                <strong
+                    id="metric-chain"
+                    class="metric-value"
+                >
+                    ?
+                </strong>
+
+                <span class="metric-detail">
+                    Current lineage verification
+                </span>
+            </article>
+
+
+            <article class="card metric-card">
+                <span class="metric-label">
+                    Recovery Epoch
+                </span>
+
+                <strong
+                    id="metric-epoch"
+                    class="metric-value"
+                >
+                    ?
+                </strong>
+
+                <span class="metric-detail">
+                    Authoritative runtime epoch
+                </span>
+            </article>
+
+
+            <article class="card metric-card">
+                <span class="metric-label">
+                    Stored Generations
+                </span>
+
+                <strong
+                    id="metric-generations"
+                    class="metric-value"
+                >
+                    ?
+                </strong>
+
+                <span class="metric-detail">
+                    Observable checkpoint files
+                </span>
+            </article>
+
+        </section>
+
+
+        <section class="content-grid">
+
+            <article class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h3>
+                            Runtime Authority
+                        </h3>
+
+                        <p>
+                            Runtime-owned persistence
+                            repository and operating
+                            boundary.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    id="authority-details"
+                    class="detail-list"
+                ></div>
+            </article>
+
+
+            <article class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h3>
+                            Current Checkpoint
+                        </h3>
+
+                        <p>
+                            Latest checkpoint identity
+                            exposed by the runtime.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    id="checkpoint-details"
+                    class="detail-list"
+                ></div>
+            </article>
+
+
+            <article class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h3>
+                            Lineage
+                        </h3>
+
+                        <p>
+                            Sequence and previous
+                            checkpoint relationship.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    id="lineage-details"
+                    class="detail-list"
+                ></div>
+            </article>
+
+
+            <article class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h3>
+                            Persistence Configuration
+                        </h3>
+
+                        <p>
+                            Active durability limits
+                            and retention policy.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    id="configuration-details"
+                    class="detail-list"
+                ></div>
+            </article>
+
+
+            <article class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h3>
+                            Recovery
+                        </h3>
+
+                        <p>
+                            Recovery outcome and
+                            runtime epoch observation.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    id="recovery-details"
+                    class="detail-list"
+                ></div>
+            </article>
+
+
+            <article class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h3>
+                            Recovery Readiness
+                        </h3>
+
+                        <p>
+                            Readiness derived from
+                            runtime and chain state.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    id="recovery-readiness"
+                    class="detail-list"
+                ></div>
+            </article>
+
+
+            <article class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h3>
+                            Storage
+                        </h3>
+
+                        <p>
+                            Repository storage and
+                            generation visibility.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    id="storage-details"
+                    class="detail-list"
+                ></div>
+            </article>
+
+
+            <article class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h3>
+                            Execution Boundary
+                        </h3>
+
+                        <p>
+                            Explicit research-only
+                            execution restriction.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    id="execution-boundary"
+                    class="detail-list"
+                ></div>
+            </article>
+
+        </section>
+
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <h3>
+                        Checkpoint History
+                    </h3>
+
+                    <p>
+                        Metadata-only checkpoint
+                        generation history.
+                    </p>
+                </div>
+
+                <span
+                    id="history-count"
+                    class="badge"
+                >
+                    0 GENERATIONS
+                </span>
+            </div>
+
+            <div class="table-wrap">
+                <table class="configuration-table">
+                    <thead>
+                        <tr>
+                            <th>Sequence</th>
+                            <th>Checkpoint</th>
+                            <th>Previous</th>
+                            <th>Epoch</th>
+                            <th>Shutdown</th>
+                            <th>Created</th>
+                        </tr>
+                    </thead>
+
+                    <tbody
+                        id="checkpoint-history"
+                    ></tbody>
+                </table>
+            </div>
+        </section>
+
+
+        <section class="content-grid">
+
+            <article class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h3>
+                            Durability Safeguards
+                        </h3>
+
+                        <p>
+                            Persistence protections
+                            exposed by the qualified
+                            API.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    id="durability-safeguards"
+                    class="detail-list"
+                ></div>
+            </article>
+
+
+            <article class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h3>
+                            API Capabilities
+                        </h3>
+
+                        <p>
+                            Observation capabilities
+                            and prohibited mutation
+                            surfaces.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    id="capabilities"
+                    class="detail-list"
+                ></div>
+            </article>
+
+        </section>
+
+
+        <section
+            id="error-panel"
+            class="panel"
+            hidden
+        >
+            <div class="panel-header">
+                <div>
+                    <h3>
+                        Persistence API Error
+                    </h3>
+
+                    <p id="error-message">
+                        Unable to load persistence
+                        information.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="boundary-notice">
+            <strong>
+                Read-only persistence boundary
+            </strong>
+
+            <span>
+                This console provides observation
+                only. Checkpoint lifecycle and
+                recovery operations are unavailable.
+                Persisted payload contents are not
+                displayed.
+            </span>
+        </section>
+
+
+        <footer class="console-footer">
+            AMRTE Research Console ?
+            Persistence &amp; Recovery
+        </footer>
+
+    </main>
+</div>
+
+<script
+    src="/static/persistence-recovery.js"
+></script>
+</body>
+</html>
+
+

@@ -1,0 +1,30 @@
+{
+  "scope": "fictional research configuration only",
+  "CONSERVATIVE": {
+    "minimum_quality_score": 0.85,
+    "max_concurrent_scenarios": 1,
+    "max_resource_load": 0.25
+  },
+  "BALANCED": {
+    "minimum_quality_score": 0.70,
+    "max_concurrent_scenarios": 3,
+    "max_resource_load": 0.50
+  },
+  "AGGRESSIVE": {
+    "minimum_quality_score": 0.60,
+    "max_concurrent_scenarios": 5,
+    "max_resource_load": 0.75
+  },
+  "CUSTOM": {
+    "minimum_quality_score": 0.70,
+    "max_concurrent_scenarios": 3,
+    "max_resource_load": 0.50
+  },
+  "permanently_unavailable": [
+    "broker authentication",
+    "live broker execution",
+    "demo broker execution",
+    "realistic leveraged-market simulation"
+  ]
+}
+

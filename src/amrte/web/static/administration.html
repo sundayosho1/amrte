@@ -1,0 +1,498 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>
+        Administration | AMRTE Research Console
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="/static/console.css"
+    >
+</head>
+
+<body class="administration-page">
+<div class="shell">
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-mark">
+                AMRTE
+            </div>
+
+            <div class="brand-copy">
+                <strong>
+                    Research Console
+                </strong>
+
+                <span>
+                    v0.27.0
+                </span>
+            </div>
+        </div>
+
+        <nav class="nav">
+            <a
+                class="nav-item"
+                href="/"
+            >
+                Command Centre
+            </a>
+
+            <a
+                class="nav-item"
+                href="/configuration"
+            >
+                Configuration
+            </a>
+
+            <a
+                class="nav-item"
+                href="/research-controls"
+            >
+                Research Controls
+            </a>
+
+            <a
+                class="nav-item"
+                href="/dataset-replay"
+            >
+                Dataset &amp; Replay
+            </a>
+
+            <a
+                class="nav-item"
+                href="/observability"
+            >
+                Observability
+            </a>
+
+            <a
+                class="nav-item"
+                href="/persistence-recovery"
+            >
+                Persistence &amp; Recovery
+            </a>
+
+            <a
+                class="nav-item"
+                href="/health-diagnostics"
+            >
+                Health &amp; Diagnostics
+            </a>
+
+            <a
+                class="nav-item active"
+                href="/administration"
+            >
+                Administration
+            </a>
+            <a class="nav-item" href="/research-evidence">
+                Research Evidence &amp; Analytics
+            </a>
+            <a class="nav-item" href="/research-governance">
+                Research Governance &amp; Safety
+            </a>
+            <a class="nav-item" href="/operational-readiness">Operational Readiness &amp; Evidence</a>
+            <a href="/research-lifecycle-quality">Research Lifecycle &amp; Quality</a>        </nav>
+    </aside>
+
+    <main class="main">
+        <header class="topbar">
+            <div>
+                <div class="eyebrow">
+                    SYSTEM GOVERNANCE
+                </div>
+
+                <h1>
+                    Administration
+                </h1>
+
+                <p>
+                    Read-only research projection of
+                    system identity, registered services,
+                    configuration authority and safeguards.
+                </p>
+            </div>
+
+            <div class="status-cluster">
+                <span class="status-pill">
+                    READ-ONLY
+                </span>
+
+                <span class="status-pill">
+                    RESEARCH-ONLY
+                </span>
+            </div>
+        </header>
+
+        <div class="safeguard">
+            <strong>
+                RESEARCH-ONLY
+            </strong>
+
+            Administration is observational only.
+            Runtime authority remains with the
+            registered AMRTE services. Financial
+            execution is prohibited.
+        </div>
+
+        <section class="panel">
+            <div class="panel-heading">
+                <div>
+                    <div class="eyebrow">
+                        SYSTEM IDENTITY
+                    </div>
+
+                    <h2>
+                        Runtime Authority
+                    </h2>
+                </div>
+            </div>
+
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <span class="metric-label">
+                        Version
+                    </span>
+
+                    <strong
+                        id="system-version"
+                        class="metric-value"
+                    >
+                        LOADING
+                    </strong>
+                </div>
+
+                <div class="metric-card">
+                    <span class="metric-label">
+                        Environment
+                    </span>
+
+                    <strong
+                        id="system-environment"
+                        class="metric-value"
+                    >
+                        LOADING
+                    </strong>
+                </div>
+
+                <div class="metric-card">
+                    <span class="metric-label">
+                        Runtime State
+                    </span>
+
+                    <strong
+                        id="runtime-state"
+                        class="metric-value"
+                    >
+                        LOADING
+                    </strong>
+                </div>
+
+                <div class="metric-card">
+                    <span class="metric-label">
+                        Execution
+                    </span>
+
+                    <strong
+                        id="execution-status"
+                        class="metric-value"
+                    >
+                        LOADING
+                    </strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-heading">
+                <div>
+                    <div class="eyebrow">
+                        CONFIGURATION AUTHORITY
+                    </div>
+
+                    <h2>
+                        Configuration Identity
+                    </h2>
+                </div>
+            </div>
+
+            <div class="detail-grid">
+                <div class="detail-item">
+                    <span>
+                        Snapshot
+                    </span>
+
+                    <strong id="configuration-snapshot">
+                        LOADING
+                    </strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>
+                        Configuration Hash
+                    </span>
+
+                    <strong id="configuration-hash">
+                        LOADING
+                    </strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>
+                        Experiment
+                    </span>
+
+                    <strong id="experiment-id">
+                        LOADING
+                    </strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>
+                        Dataset
+                    </span>
+
+                    <strong id="dataset-id">
+                        LOADING
+                    </strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-heading">
+                <div>
+                    <div class="eyebrow">
+                        SERVICE REGISTRY
+                    </div>
+
+                    <h2>
+                        Registered Services
+                    </h2>
+                </div>
+
+                <span
+                    id="service-count"
+                    class="status-pill"
+                >
+                    LOADING
+                </span>
+            </div>
+
+            <div
+                id="registered-services"
+                class="detail-grid"
+            >
+                <div class="detail-item">
+                    <span>
+                        Registry
+                    </span>
+
+                    <strong>
+                        LOADING
+                    </strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-heading">
+                <div>
+                    <div class="eyebrow">
+                        PERSISTENCE
+                    </div>
+
+                    <h2>
+                        Repository Authority
+                    </h2>
+                </div>
+            </div>
+
+            <div class="detail-grid">
+                <div class="detail-item">
+                    <span>
+                        Repository
+                    </span>
+
+                    <strong id="repository-type">
+                        LOADING
+                    </strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>
+                        Chain Integrity
+                    </span>
+
+                    <strong id="chain-valid">
+                        LOADING
+                    </strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>
+                        Persistence Mutation
+                    </span>
+
+                    <strong id="persistence-mutation">
+                        PROHIBITED
+                    </strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-heading">
+                <div>
+                    <div class="eyebrow">
+                        ADMINISTRATION AUTHORITY
+                    </div>
+
+                    <h2>
+                        Permission Model
+                    </h2>
+                </div>
+            </div>
+
+            <div class="detail-grid">
+                <div class="detail-item">
+                    <span>
+                        Dedicated Administration RBAC
+                    </span>
+
+                    <strong id="administration-rbac">
+                        LOADING
+                    </strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>
+                        Claims Authority
+                    </span>
+
+                    <strong id="claims-authority">
+                        LOADING
+                    </strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>
+                        Invented Permissions
+                    </span>
+
+                    <strong id="invented-permissions">
+                        LOADING
+                    </strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-heading">
+                <div>
+                    <div class="eyebrow">
+                        EXECUTION BOUNDARY
+                    </div>
+
+                    <h2>
+                        Prohibited Capabilities
+                    </h2>
+                </div>
+            </div>
+
+            <div class="detail-grid">
+                <div class="detail-item">
+                    <span>
+                        Provider
+                    </span>
+
+                    <strong id="execution-provider">
+                        LOADING
+                    </strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>
+                        Financial Execution
+                    </span>
+
+                    <strong id="financial-execution">
+                        PROHIBITED
+                    </strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>
+                        Broker Connectivity
+                    </span>
+
+                    <strong id="broker-connectivity">
+                        PROHIBITED
+                    </strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>
+                        Account Connectivity
+                    </span>
+
+                    <strong id="account-connectivity">
+                        PROHIBITED
+                    </strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-heading">
+                <div>
+                    <div class="eyebrow">
+                        CAPABILITIES
+                    </div>
+
+                    <h2>
+                        Read-Only Safeguards
+                    </h2>
+                </div>
+            </div>
+
+            <div
+                id="capability-list"
+                class="detail-grid"
+            >
+                <div class="detail-item">
+                    <span>
+                        Administration
+                    </span>
+
+                    <strong>
+                        OBSERVATIONAL ONLY
+                    </strong>
+                </div>
+            </div>
+        </section>
+
+        <div
+            id="administration-error"
+            class="safeguard"
+            hidden
+        >
+            Administration projection is currently
+            unavailable.
+        </div>
+    </main>
+</div>
+
+<script src="/static/administration.js"></script>
+</body>
+</html>
+
+

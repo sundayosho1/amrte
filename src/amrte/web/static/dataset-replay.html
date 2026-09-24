@@ -1,0 +1,396 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>AMRTE Dataset & Replay</title>
+    <link
+        rel="stylesheet"
+        href="/static/console.css"
+    >
+</head>
+<body class="research-controls-page">
+<div class="shell">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-mark">A</div>
+            <div>
+                <strong>AMRTE</strong>
+                <span>Research Console</span>
+            </div>
+        </div>
+
+        <nav class="nav">
+            <a class="nav-item" href="/">
+                Command Centre
+            </a>
+
+            <a
+                class="nav-item"
+                href="/configuration"
+            >
+                Configuration
+            </a>
+
+            <a
+                class="nav-item"
+                href="/research-controls"
+            >
+                Research Controls
+            </a>
+
+            <a
+                class="nav-item active"
+                href="/dataset-replay"
+            >
+                Dataset &amp; Replay
+            </a>
+
+            <a class="nav-item" href="/observability">
+                Observability
+            </a>
+
+            <a
+                class="nav-item"
+                href="/persistence-recovery"
+            >
+                Persistence &amp; Recovery
+            </a>
+
+            <a class="nav-item" href="/health-diagnostics">Health &amp; Diagnostics</a>
+
+            <a class="nav-item" href="/administration">
+                Administration
+            </a>
+            <a class="nav-item" href="/research-evidence">
+                Research Evidence &amp; Analytics
+            </a>
+            <a class="nav-item" href="/research-governance">
+                Research Governance &amp; Safety
+            </a>
+            <a class="nav-item" href="/operational-readiness">Operational Readiness &amp; Evidence</a>
+            <a href="/research-lifecycle-quality">Research Lifecycle &amp; Quality</a>        </nav>
+
+        <div class="safeguard">
+            <strong>Research-only runtime</strong>
+            <span>
+                Financial execution capability
+                is prohibited.
+            </span>
+        </div>
+    </aside>
+
+    <main class="main">
+
+        <header class="topbar">
+            <div>
+                <h1>Dataset &amp; Replay</h1>
+                <p>
+                    Dataset identity, offline provider policy
+                    and temporal replay integrity
+                </p>
+            </div>
+
+            <div class="runtime-status">
+                <span
+                    id="runtime-status-dot"
+                    class="status-dot"
+                ></span>
+                Runtime:
+                <strong id="runtime-state">
+                    Loading
+                </strong>
+            </div>
+        </header>
+
+        <section class="hero-banner">
+            <div>
+                <span class="eyebrow">
+                    Dataset Integrity
+                </span>
+
+                <h2>
+                    Dataset &amp; Replay Integrity Console
+                </h2>
+
+                <p>
+                    Read-only inspection of configured
+                    research datasets, deterministic offline
+                    providers, temporal safeguards and
+                    replay authority.
+                </p>
+            </div>
+
+            <div class="hero-status">
+                <span class="badge">
+                    READ ONLY
+                </span>
+            </div>
+        </section>
+
+        <section class="metrics">
+            <article class="metric-card">
+                <span class="metric-label">
+                    Dataset
+                </span>
+                <strong
+                    class="metric-value"
+                    id="metric-dataset"
+                >
+                    ?
+                </strong>
+                <span class="metric-detail">
+                    Configured research dataset
+                </span>
+            </article>
+
+            <article class="metric-card">
+                <span class="metric-label">
+                    Market Provider
+                </span>
+                <strong
+                    class="metric-value"
+                    id="metric-provider"
+                >
+                    ?
+                </strong>
+                <span class="metric-detail">
+                    Configured market-data policy
+                </span>
+            </article>
+
+            <article class="metric-card">
+                <span class="metric-label">
+                    Temporal Integrity
+                </span>
+                <strong
+                    class="metric-value"
+                    id="metric-temporal"
+                >
+                    ?
+                </strong>
+                <span class="metric-detail">
+                    No-look-ahead safeguard
+                </span>
+            </article>
+
+            <article class="metric-card">
+                <span class="metric-label">
+                    Replay Authority
+                </span>
+                <strong
+                    class="metric-value"
+                    id="metric-replay"
+                >
+                    ?
+                </strong>
+                <span class="metric-detail">
+                    Authoritative replay service
+                </span>
+            </article>
+        </section>
+
+        <section class="content-grid">
+            <article class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h3>Dataset Identity</h3>
+                        <p>
+                            Configured and durable dataset
+                            identity information.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="detail-list"
+                    id="dataset-details"
+                >
+                    Loading dataset identity?
+                </div>
+            </article>
+
+            <article class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h3>Offline Provider Policy</h3>
+                        <p>
+                            Configured market-data and
+                            historical-event provider policy.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="detail-list"
+                    id="provider-details"
+                >
+                    Loading provider policy?
+                </div>
+            </article>
+        </section>
+
+        <section class="content-grid">
+            <article class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h3>Temporal Integrity</h3>
+                        <p>
+                            Historical as-of and
+                            no-look-ahead safeguards.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="detail-list"
+                    id="temporal-details"
+                >
+                    Loading temporal safeguards?
+                </div>
+            </article>
+
+            <article class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h3>Replay Authority</h3>
+                        <p>
+                            Runtime ownership and replay
+                            mutation availability.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="detail-list"
+                    id="replay-details"
+                >
+                    Loading replay authority?
+                </div>
+            </article>
+        </section>
+
+        <section class="content-grid">
+            <article class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h3>Configuration Identity</h3>
+                        <p>
+                            Research mode and durable
+                            configuration identity.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="detail-list"
+                    id="configuration-details"
+                >
+                    Loading configuration?
+                </div>
+            </article>
+
+            <article class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h3>Execution Boundary</h3>
+                        <p>
+                            Financial execution safeguard
+                            for this runtime.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="detail-list"
+                    id="execution-details"
+                >
+                    Loading execution boundary?
+                </div>
+            </article>
+        </section>
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <h3>Implemented Capabilities</h3>
+                    <p>
+                        Available implementation components
+                        and whether each currently owns
+                        runtime authority.
+                    </p>
+                </div>
+
+                <span
+                    class="badge"
+                    id="capability-count"
+                >
+                    ?
+                </span>
+            </div>
+
+            <div
+                class="control-grid"
+                id="implemented-capabilities"
+            >
+                Loading capabilities?
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <h3>Registered Services</h3>
+                    <p>
+                        Services currently owned by the
+                        authoritative AMRTE runtime.
+                    </p>
+                </div>
+
+                <span
+                    class="badge"
+                    id="service-count"
+                >
+                    ?
+                </span>
+            </div>
+
+            <div
+                class="service-registry-grid"
+                id="registered-services"
+            >
+                Loading registered services?
+            </div>
+        </section>
+
+        <section class="boundary-notice">
+            <strong>
+                Dataset and replay mutation is unavailable
+                from this page.
+            </strong>
+
+            <span>
+                This console cannot start or stop replay,
+                mutate datasets, register providers,
+                transition runtime state, or perform
+                financial execution.
+            </span>
+        </section>
+
+        <footer class="console-footer">
+            AMRTE Research Console ?
+            Dataset &amp; Replay ? Read Only
+        </footer>
+
+    </main>
+</div>
+
+<script src="/static/dataset-replay.js"></script>
+</body>
+</html>
+
+

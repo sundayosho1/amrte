@@ -1,0 +1,1587 @@
+﻿:root {
+    color-scheme: dark;
+    --bg: #08111f;
+    --panel: #0d1929;
+    --panel-soft: #111f31;
+    --border: #203047;
+    --text: #e8eef7;
+    --muted: #8fa2ba;
+    --accent: #58a6ff;
+    --success: #3fb950;
+    --warning: #d29922;
+    --danger: #f85149;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family:
+        Inter, ui-sans-serif, system-ui, -apple-system,
+        BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+.shell {
+    display: grid;
+    grid-template-columns: 250px minmax(0, 1fr);
+    min-height: 100vh;
+}
+
+.sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    padding: 24px 18px;
+    border-right: 1px solid var(--border);
+    background: #0a1422;
+}
+
+.brand {
+    margin-bottom: 30px;
+}
+
+.brand-title {
+    margin: 0;
+    font-size: 21px;
+    letter-spacing: 0.04em;
+}
+
+.brand-subtitle {
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.nav {
+    display: grid;
+    gap: 7px;
+}
+
+.nav-item {
+    padding: 11px 12px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: var(--muted);
+    text-decoration: none;
+}
+
+.nav-item.active {
+    color: var(--text);
+    border-color: var(--border);
+    background: var(--panel);
+}
+
+.nav-item.disabled {
+    opacity: 0.45;
+    cursor: default;
+}
+
+.safeguard {
+    position: absolute;
+    right: 18px;
+    bottom: 22px;
+    left: 18px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--panel);
+    font-size: 12px;
+}
+
+.safeguard strong {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--success);
+}
+
+.main {
+    min-width: 0;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 72px;
+    padding: 0 30px;
+    border-bottom: 1px solid var(--border);
+}
+
+.page-title {
+    margin: 0;
+    font-size: 20px;
+}
+
+.runtime-status {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.status-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--muted);
+}
+
+.status-dot.running {
+    background: var(--success);
+}
+
+.content {
+    padding: 28px 30px 42px;
+}
+
+.banner {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 24px;
+    padding: 16px 18px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--panel);
+}
+
+.banner-title {
+    font-weight: 650;
+}
+
+.banner-text {
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    padding: 6px 9px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.badge.success {
+    color: #b7f5c0;
+    background: rgba(63, 185, 80, 0.14);
+}
+
+.badge.warning {
+    color: #f4d58b;
+    background: rgba(210, 153, 34, 0.14);
+}
+
+.grid {
+    display: grid;
+    gap: 18px;
+}
+
+.metrics {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-bottom: 18px;
+}
+
+.two-column {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card {
+    min-width: 0;
+    padding: 19px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--panel);
+}
+
+.card-title {
+    margin: 0 0 16px;
+    font-size: 14px;
+    font-weight: 650;
+}
+
+.metric-label {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.metric-value {
+    margin-top: 8px;
+    overflow-wrap: anywhere;
+    font-size: 21px;
+    font-weight: 650;
+}
+
+.metric-subtext {
+    margin-top: 7px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.details {
+    display: grid;
+    gap: 11px;
+}
+
+.detail-row {
+    display: grid;
+    grid-template-columns: 155px minmax(0, 1fr);
+    gap: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(32, 48, 71, 0.65);
+}
+
+.detail-row:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.detail-label {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.detail-value {
+    overflow-wrap: anywhere;
+    text-align: right;
+    font-size: 12px;
+}
+
+.loading {
+    color: var(--muted);
+}
+
+.error {
+    color: var(--danger);
+}
+
+.footer {
+    padding-top: 24px;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+@media (max-width: 1050px) {
+    .metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    .shell {
+        display: block;
+    }
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+
+    .safeguard {
+        position: static;
+        margin-top: 20px;
+    }
+
+    .metrics,
+    .two-column {
+        grid-template-columns: 1fr;
+    }
+
+    .topbar {
+        padding: 18px;
+    }
+
+    .content {
+        padding: 18px;
+    }
+}
+
+/* Configuration Console */
+
+.nav-item:not(.disabled):hover {
+    color: var(--text);
+    border-color: var(--border);
+    background: var(--panel-soft);
+}
+
+.config-summary-grid {
+    margin-bottom: 18px;
+}
+
+.safeguards-card {
+    margin-bottom: 18px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 18px;
+}
+
+.section-heading .card-title {
+    margin-bottom: 5px;
+}
+
+.section-description {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.provenance-summary {
+    display: grid;
+    gap: 12px;
+}
+
+.provenance-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 11px;
+    border-bottom: 1px solid rgba(32, 48, 71, 0.65);
+}
+
+.provenance-item:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.provenance-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 7px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.provenance-badge.default {
+    color: #c9d5e5;
+    background: rgba(143, 162, 186, 0.14);
+}
+
+.provenance-badge.profile {
+    color: #b9d9ff;
+    background: rgba(88, 166, 255, 0.14);
+}
+
+.provenance-badge.hard {
+    color: #f4d58b;
+    background: rgba(210, 153, 34, 0.14);
+}
+
+.safeguard-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.safeguard-item {
+    min-width: 0;
+    padding: 13px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--panel-soft);
+}
+
+.safeguard-key {
+    min-height: 34px;
+    overflow-wrap: anywhere;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.45;
+}
+
+.safeguard-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.value-safe {
+    color: var(--success);
+}
+
+.value-warning {
+    color: var(--warning);
+}
+
+.configuration-browser {
+    padding-bottom: 22px;
+}
+
+.parameter-counter {
+    color: var(--muted);
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.config-toolbar {
+    display: grid;
+    grid-template-columns:
+        minmax(220px, 1fr)
+        minmax(160px, 220px)
+        minmax(170px, 220px);
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.config-search,
+.config-filter {
+    width: 100%;
+    min-width: 0;
+    padding: 10px 11px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    outline: none;
+    background: var(--panel-soft);
+    color: var(--text);
+    font-size: 12px;
+}
+
+.config-search:focus,
+.config-filter:focus {
+    border-color: var(--accent);
+}
+
+.config-search::placeholder {
+    color: var(--muted);
+}
+
+.configuration-sections {
+    display: grid;
+    gap: 15px;
+}
+
+.config-section {
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.config-section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 12px 14px;
+    background: var(--panel-soft);
+}
+
+.config-section-heading strong {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.config-section-heading span {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.config-table-wrap {
+    overflow-x: auto;
+}
+
+.config-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+}
+
+.config-table th,
+.config-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(32, 48, 71, 0.65);
+    text-align: left;
+    vertical-align: top;
+}
+
+.config-table th {
+    color: var(--muted);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.config-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.config-table tbody tr:hover {
+    background: rgba(88, 166, 255, 0.035);
+}
+
+.parameter-key {
+    width: 37%;
+    min-width: 250px;
+    overflow-wrap: anywhere;
+    color: #cfe3fa;
+}
+
+.parameter-value {
+    width: 35%;
+    min-width: 180px;
+    overflow-wrap: anywhere;
+}
+
+.parameter-type {
+    color: var(--muted);
+    white-space: nowrap;
+}
+
+.empty-state {
+    padding: 30px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+@media (max-width: 1200px) {
+    .safeguard-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 900px) {
+    .config-toolbar {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 760px) {
+    .safeguard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-heading {
+        display: block;
+    }
+
+    .parameter-counter,
+    .section-heading > .badge {
+        display: inline-flex;
+        margin-top: 10px;
+    }
+}
+
+/* Research Controls Console */
+
+.control-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+}
+
+.control-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    background: var(--surface);
+}
+
+.control-card.unavailable {
+    opacity: 0.88;
+}
+
+.control-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.control-category {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.65;
+    margin-bottom: 10px;
+}
+
+.control-card p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 5px 9px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.status-pill.unavailable {
+    border: 1px solid var(--border);
+}
+
+.authority-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(210px, 1fr));
+    gap: 12px;
+}
+
+.authority-item {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+}
+
+.authority-item span {
+    font-size: 13px;
+}
+
+.authority-present,
+.authority-absent {
+    font-size: 11px;
+    letter-spacing: 0.04em;
+}
+
+.boundary-notice {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-top: 18px;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.boundary-notice span {
+    font-size: 13px;
+    line-height: 1.55;
+    opacity: 0.75;
+}
+
+@media (max-width: 720px) {
+    .control-card-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+
+/* ============================================================
+   Research Controls ? Scoped Visual Refinement
+   ============================================================ */
+
+.research-controls-page .main {
+    min-width: 0;
+    overflow-x: hidden;
+}
+
+/* ------------------------------------------------------------
+   Topbar
+   ------------------------------------------------------------ */
+
+.research-controls-page .topbar {
+    gap: 24px;
+    min-height: 88px;
+    padding: 18px 30px;
+}
+
+.research-controls-page .topbar h1 {
+    margin: 0 0 6px;
+    font-size: 22px;
+    line-height: 1.2;
+}
+
+.research-controls-page .topbar p {
+    max-width: 680px;
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+.research-controls-page .runtime-indicator {
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+
+/* ------------------------------------------------------------
+   Hero / authority summary
+   ------------------------------------------------------------ */
+
+.research-controls-page .hero-banner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 32px;
+    margin: 30px 30px 18px;
+    padding: 28px 30px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--panel);
+}
+
+.research-controls-page .hero-banner > div:first-child {
+    min-width: 0;
+    max-width: 760px;
+}
+
+.research-controls-page .hero-banner .eyebrow {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.research-controls-page .hero-banner h2 {
+    margin: 0 0 10px;
+    font-size: 24px;
+    line-height: 1.25;
+}
+
+.research-controls-page .hero-banner p {
+    max-width: 680px;
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.65;
+}
+
+.research-controls-page .hero-status {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+.research-controls-page .hero-status .badge {
+    min-width: 96px;
+    justify-content: center;
+    padding: 8px 12px;
+}
+
+/* ------------------------------------------------------------
+   Runtime metrics
+   ------------------------------------------------------------ */
+
+.research-controls-page .metrics {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin: 0 30px 18px;
+}
+
+.research-controls-page .metric-card {
+    min-width: 0;
+    padding: 20px;
+}
+
+.research-controls-page .metric-label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.research-controls-page .metric-value {
+    display: block;
+    margin-bottom: 8px;
+    overflow-wrap: anywhere;
+    font-size: 18px;
+    line-height: 1.3;
+}
+
+.research-controls-page .metric-detail {
+    display: block;
+    line-height: 1.45;
+}
+
+/* ------------------------------------------------------------
+   Main panel layout
+   ------------------------------------------------------------ */
+
+.research-controls-page .content-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin: 0 30px 18px;
+}
+
+.research-controls-page .content-grid .panel {
+    margin: 0;
+}
+
+.research-controls-page > .shell > .main > .panel {
+    margin-right: 30px;
+    margin-left: 30px;
+}
+
+.research-controls-page .panel {
+    overflow: hidden;
+}
+
+.research-controls-page .panel-header {
+    gap: 20px;
+}
+
+.research-controls-page .panel-header h3 {
+    margin-bottom: 5px;
+}
+
+.research-controls-page .panel-header p {
+    line-height: 1.5;
+}
+
+/* ------------------------------------------------------------
+   Authority and execution detail rows
+   ------------------------------------------------------------ */
+
+.research-controls-page .detail-list {
+    display: grid;
+    gap: 0;
+}
+
+.research-controls-page .detail-row {
+    display: grid;
+    grid-template-columns: minmax(150px, 0.9fr) minmax(0, 1.1fr);
+    align-items: center;
+    gap: 20px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.research-controls-page .detail-row:last-child {
+    border-bottom: 0;
+}
+
+.research-controls-page .detail-row > :first-child {
+    min-width: 0;
+    color: var(--muted);
+}
+
+.research-controls-page .detail-row > :last-child {
+    min-width: 0;
+    justify-self: end;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+/* ------------------------------------------------------------
+   Governed controls
+   ------------------------------------------------------------ */
+
+.research-controls-page .control-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.research-controls-page .control-card {
+    min-width: 0;
+    padding: 18px;
+}
+
+.research-controls-page .control-card-header {
+    gap: 14px;
+    margin-bottom: 12px;
+}
+
+.research-controls-page .control-card-header strong {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    line-height: 1.4;
+}
+
+.research-controls-page .control-card .badge {
+    flex: 0 0 auto;
+}
+
+.research-controls-page .control-card p,
+.research-controls-page .control-card span {
+    overflow-wrap: anywhere;
+}
+
+/* ------------------------------------------------------------
+   Runtime authority grid
+   ------------------------------------------------------------ */
+
+.research-controls-page .authority-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.research-controls-page .authority-item {
+    min-width: 0;
+}
+
+.research-controls-page .authority-item strong,
+.research-controls-page .authority-item span {
+    overflow-wrap: anywhere;
+}
+
+/* ------------------------------------------------------------
+   Registered services table
+   ------------------------------------------------------------ */
+
+.research-controls-page .table-wrap {
+    overflow-x: auto;
+}
+
+.research-controls-page .configuration-table {
+    min-width: 680px;
+}
+
+.research-controls-page .configuration-table th,
+.research-controls-page .configuration-table td {
+    vertical-align: top;
+}
+
+.research-controls-page .configuration-table td {
+    overflow-wrap: anywhere;
+}
+
+/* ------------------------------------------------------------
+   Boundary notice / footer
+   ------------------------------------------------------------ */
+
+.research-controls-page .boundary-notice {
+    display: grid;
+    gap: 7px;
+    margin: 18px 30px 0;
+    padding: 18px 20px;
+    line-height: 1.55;
+}
+
+.research-controls-page .boundary-notice strong,
+.research-controls-page .boundary-notice span {
+    display: block;
+}
+
+.research-controls-page .console-footer {
+    margin-top: 24px;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+/* ------------------------------------------------------------
+   Responsive refinement
+   ------------------------------------------------------------ */
+
+@media (max-width: 1180px) {
+    .research-controls-page .metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .research-controls-page .authority-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 900px) {
+    .research-controls-page .content-grid,
+    .research-controls-page .control-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .research-controls-page .hero-banner {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 760px) {
+    .research-controls-page .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 18px;
+    }
+
+    .research-controls-page .hero-banner {
+        flex-direction: column;
+        margin: 18px;
+        padding: 22px;
+    }
+
+    .research-controls-page .hero-status {
+        justify-content: flex-start;
+    }
+
+    .research-controls-page .metrics,
+    .research-controls-page .content-grid {
+        margin-right: 18px;
+        margin-left: 18px;
+    }
+
+    .research-controls-page > .shell > .main > .panel {
+        margin-right: 18px;
+        margin-left: 18px;
+    }
+
+    .research-controls-page .boundary-notice {
+        margin-right: 18px;
+        margin-left: 18px;
+    }
+
+    .research-controls-page .console-footer {
+        padding-right: 18px;
+        padding-left: 18px;
+    }
+}
+
+@media (max-width: 560px) {
+    .research-controls-page .metrics,
+    .research-controls-page .authority-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .research-controls-page .detail-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+
+    .research-controls-page .detail-row > :last-child {
+        justify-self: start;
+        text-align: left;
+    }
+}
+
+
+/* ============================================================
+   Research Controls ? Visual Refinement V2
+   Match Command Centre / Configuration dashboard density
+   ============================================================ */
+
+/* Main header: match sibling console pages */
+
+.research-controls-page .topbar {
+    min-height: 88px;
+    padding: 0 36px;
+}
+
+.research-controls-page .topbar h1 {
+    margin: 0;
+    font-size: 26px;
+    line-height: 1.2;
+}
+
+.research-controls-page .topbar p {
+    margin: 7px 0 0;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.research-controls-page .runtime-indicator {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+
+/* Compact authority banner */
+
+.research-controls-page .hero-banner {
+    align-items: center;
+    min-height: auto;
+    margin: 34px 36px 30px;
+    padding: 20px 22px;
+    border-radius: 10px;
+}
+
+.research-controls-page .hero-banner .eyebrow {
+    margin-bottom: 5px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+}
+
+.research-controls-page .hero-banner h2 {
+    margin: 0 0 4px;
+    font-size: 18px;
+    line-height: 1.25;
+}
+
+.research-controls-page .hero-banner p {
+    font-size: 14px;
+    line-height: 1.45;
+}
+
+.research-controls-page .hero-status {
+    align-self: center;
+}
+
+.research-controls-page .hero-status .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: auto;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: rgba(35, 185, 102, 0.15);
+    font-size: 11px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+
+/* Four proper dashboard cards */
+
+.research-controls-page .metrics {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    margin: 0 36px 22px;
+}
+
+.research-controls-page .metric-card {
+    display: flex;
+    min-width: 0;
+    min-height: 122px;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 22px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--panel);
+}
+
+.research-controls-page .metric-label {
+    margin: 0 0 7px;
+    font-size: 12px;
+    line-height: 1.3;
+}
+
+.research-controls-page .metric-value {
+    margin: 0 0 6px;
+    font-size: 21px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.research-controls-page .metric-detail {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.35;
+}
+
+
+/* Authority / Execution immediately below metrics */
+
+.research-controls-page .content-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin: 0 36px 22px;
+}
+
+.research-controls-page .content-grid .panel {
+    min-width: 0;
+    border-radius: 10px;
+}
+
+.research-controls-page .content-grid .panel-header {
+    padding-bottom: 14px;
+}
+
+.research-controls-page .content-grid .panel-header h3 {
+    margin: 0 0 4px;
+    font-size: 16px;
+}
+
+.research-controls-page .content-grid .panel-header p {
+    margin: 0;
+    font-size: 12px;
+}
+
+
+/* Cleaner authority rows */
+
+.research-controls-page .detail-row {
+    grid-template-columns:
+        minmax(135px, 0.8fr)
+        minmax(0, 1.2fr);
+    gap: 18px;
+    padding: 11px 0;
+}
+
+.research-controls-page .detail-row > :first-child {
+    font-size: 12px;
+}
+
+.research-controls-page .detail-row > :last-child {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* Remaining full-width panels align with dashboard */
+
+.research-controls-page > .shell > .main > .panel {
+    margin-right: 36px;
+    margin-bottom: 22px;
+    margin-left: 36px;
+    border-radius: 10px;
+}
+
+.research-controls-page > .shell > .main > .panel
+.panel-header h3 {
+    font-size: 16px;
+}
+
+.research-controls-page > .shell > .main > .panel
+.panel-header p {
+    font-size: 12px;
+}
+
+
+/* Governed controls: compact operational cards */
+
+.research-controls-page .control-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.research-controls-page .control-card {
+    padding: 15px 16px;
+    border-radius: 8px;
+}
+
+.research-controls-page .control-card-header {
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.research-controls-page .control-card-header strong {
+    font-size: 12px;
+}
+
+.research-controls-page .control-card .badge {
+    padding: 5px 8px;
+    font-size: 9px;
+}
+
+
+/* Candidate runtime services */
+
+.research-controls-page .authority-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.research-controls-page .authority-item {
+    padding: 14px;
+    border-radius: 8px;
+}
+
+
+/* Registered service table */
+
+.research-controls-page .configuration-table th {
+    font-size: 11px;
+}
+
+.research-controls-page .configuration-table td {
+    font-size: 12px;
+}
+
+
+/* Final safety notice */
+
+.research-controls-page .boundary-notice {
+    margin: 0 36px 22px;
+    padding: 15px 18px;
+    border-radius: 9px;
+}
+
+.research-controls-page .boundary-notice strong {
+    font-size: 13px;
+}
+
+.research-controls-page .boundary-notice span {
+    font-size: 12px;
+}
+
+
+/* Footer */
+
+.research-controls-page .console-footer {
+    margin-top: 0;
+    padding: 0 36px 28px;
+}
+
+
+/* Medium screens */
+
+@media (max-width: 1180px) {
+    .research-controls-page .metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .research-controls-page .authority-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+/* Tablet */
+
+@media (max-width: 900px) {
+    .research-controls-page .content-grid,
+    .research-controls-page .control-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Mobile */
+
+@media (max-width: 760px) {
+    .research-controls-page .topbar {
+        min-height: auto;
+        padding: 18px;
+    }
+
+    .research-controls-page .hero-banner {
+        margin: 18px;
+        padding: 18px;
+    }
+
+    .research-controls-page .metrics,
+    .research-controls-page .content-grid {
+        margin-right: 18px;
+        margin-left: 18px;
+    }
+
+    .research-controls-page > .shell > .main > .panel {
+        margin-right: 18px;
+        margin-left: 18px;
+    }
+
+    .research-controls-page .boundary-notice {
+        margin-right: 18px;
+        margin-left: 18px;
+    }
+
+    .research-controls-page .console-footer {
+        padding-right: 18px;
+        padding-left: 18px;
+    }
+}
+
+
+/* Narrow mobile */
+
+@media (max-width: 560px) {
+    .research-controls-page .metrics,
+    .research-controls-page .authority-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .research-controls-page .detail-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ============================================================
+   Research Controls ? Final Status Polish
+   ============================================================ */
+
+/* Match Command Centre runtime status */
+
+.research-controls-page .runtime-status {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    flex: 0 0 auto;
+    color: var(--muted);
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.research-controls-page .runtime-status strong {
+    color: var(--text);
+    font-weight: 700;
+}
+
+.research-controls-page .runtime-status .status-dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    flex: 0 0 9px;
+    border-radius: 50%;
+    background: var(--muted);
+}
+
+.research-controls-page .runtime-status .status-dot.running {
+    background: var(--success);
+    box-shadow:
+        0 0 0 3px rgba(35, 185, 102, 0.10);
+}
+
+
+/* Stronger READ ONLY state */
+
+.research-controls-page .hero-status .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 98px;
+    padding: 9px 16px;
+    border: 1px solid rgba(35, 185, 102, 0.45);
+    border-radius: 999px;
+    background: rgba(35, 185, 102, 0.22);
+    color: var(--success);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    white-space: nowrap;
+    box-shadow:
+        inset 0 0 0 1px rgba(35, 185, 102, 0.05);
+}
+
+
+/* ============================================================
+   Research Controls ? Registered Service Registry
+   ============================================================ */
+
+.research-controls-page .service-registry-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.research-controls-page .service-registry-card {
+    min-width: 0;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--panel-soft);
+}
+
+.research-controls-page .service-registry-header {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 16px;
+}
+
+.research-controls-page .service-registry-icon {
+    display: flex;
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--panel);
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.research-controls-page .service-registry-title {
+    display: flex;
+    min-width: 0;
+    flex: 1;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.research-controls-page .service-registry-title > strong {
+    min-width: 0;
+    padding-top: 3px;
+    overflow-wrap: anywhere;
+    font-size: 12px;
+    line-height: 1.3;
+    text-transform: uppercase;
+}
+
+.research-controls-page .service-status {
+    flex: 0 0 auto;
+    padding: 4px 6px;
+    border: 1px solid rgba(35, 185, 102, 0.32);
+    border-radius: 999px;
+    background: rgba(35, 185, 102, 0.12);
+    color: var(--success);
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+}
+
+.research-controls-page .service-registry-detail {
+    display: grid;
+    gap: 5px;
+    min-width: 0;
+    padding: 10px 0;
+    border-top: 1px solid var(--border);
+}
+
+.research-controls-page
+.service-registry-detail > span {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.research-controls-page
+.service-registry-detail > strong {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.research-controls-page
+.service-registry-detail > code {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    color: var(--muted);
+    font-family: inherit;
+    font-size: 10px;
+    line-height: 1.4;
+}
+
+@media (max-width: 1280px) {
+    .research-controls-page
+    .service-registry-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .research-controls-page
+    .service-registry-grid {
+        grid-template-columns: 1fr;
+    }
+}
