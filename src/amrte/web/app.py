@@ -14,6 +14,10 @@ from amrte.web.research_evidence import (
     build_research_evidence_record_detail,
     build_research_evidence_summary,
 )
+from amrte.web.research_performance import (
+    build_research_outcomes_summary,
+    build_research_performance_summary,
+)
 from amrte.web.research_governance import build_research_governance_summary
 from amrte.web.research_lifecycle_quality import (
     build_research_lifecycle_quality_payload,
@@ -470,6 +474,30 @@ def create_app(
         runtime = request.app.state.runtime
         return build_research_decisions_summary(
             runtime
+        )
+
+    @app.get("/api/v1/research-performance")
+    def research_performance_summary(
+        request: Request,
+    ) -> dict[str, object]:
+        runtime = request.app.state.runtime
+        return build_research_performance_summary(
+            runtime
+        )
+
+    @app.get("/api/v1/research-outcomes")
+    def research_outcomes_summary(
+        request: Request,
+        offset: int = 0,
+        limit: int = 50,
+        classification: str | None = None,
+    ) -> dict[str, object]:
+        runtime = request.app.state.runtime
+        return build_research_outcomes_summary(
+            runtime,
+            offset=offset,
+            limit=limit,
+            classification=classification,
         )
 
     @app.get("/api/v1/dashboard/summary")
