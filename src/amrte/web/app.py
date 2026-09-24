@@ -50,6 +50,9 @@ from amrte.web.strategy_evaluation import (
 from amrte.web.research_scoring import (
     build_research_scoring_summary,
 )
+from amrte.web.research_portfolio import (
+    build_research_portfolio_summary,
+)
 
 
 VERSION = AMRTE_VERSION
@@ -419,6 +422,15 @@ def create_app(
     ) -> dict[str, object]:
         runtime = request.app.state.runtime
         return build_research_scoring_summary(
+            runtime
+        )
+
+    @app.get("/api/v1/research-portfolio")
+    def research_portfolio_summary(
+        request: Request,
+    ) -> dict[str, object]:
+        runtime = request.app.state.runtime
+        return build_research_portfolio_summary(
             runtime
         )
 

@@ -636,6 +636,10 @@ def register_core_components(
 
     for metadata, component in research_scoring_component_registrations():
         composition.register(metadata, component)
+    from amrte.portfolio.research_portfolio_runtime import research_portfolio_component_registrations
+
+    for metadata, component in research_portfolio_component_registrations():
+        composition.register(metadata, component)
     composition.register(
         ComponentMetadata(
             component_id="composition",

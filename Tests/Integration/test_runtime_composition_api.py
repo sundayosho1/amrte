@@ -65,6 +65,12 @@ def test_runtime_composition_inventory_exposes_core_components():
         "candidate_comparison",
         "strategy_arbitration",
         "post_scoring_research_assessment",
+        "research_risk",
+        "portfolio_context",
+        "correlation_analysis",
+        "concentration_analysis",
+        "portfolio_restrictions",
+        "portfolio_research_snapshot",
         "state",
         "research_pipeline",
         "strategy_evaluation",
@@ -96,6 +102,12 @@ def test_runtime_composition_inventory_exposes_core_components():
     assert components["candidate_comparison"]["active"] is True
     assert components["strategy_arbitration"]["active"] is True
     assert components["post_scoring_research_assessment"]["active"] is True
+    assert components["research_risk"]["active"] is True
+    assert components["portfolio_context"]["active"] is True
+    assert components["correlation_analysis"]["active"] is True
+    assert components["concentration_analysis"]["active"] is True
+    assert components["portfolio_restrictions"]["active"] is True
+    assert components["portfolio_research_snapshot"]["active"] is True
     assert components["data_trust"]["persistence_participant"] is True
     assert components["data_trust"]["recovery_participant"] is True
     assert components["market_intelligence"]["persistence_participant"] is True
@@ -104,6 +116,8 @@ def test_runtime_composition_inventory_exposes_core_components():
     assert components["research_candidate_runtime"]["recovery_participant"] is True
     assert components["central_scoring"]["persistence_participant"] is True
     assert components["post_scoring_research_assessment"]["recovery_participant"] is True
+    assert components["research_risk"]["persistence_participant"] is True
+    assert components["portfolio_research_snapshot"]["recovery_participant"] is True
     assert components["state"]["persistence_participant"] is True
     assert components["state"]["recovery_participant"] is True
 
