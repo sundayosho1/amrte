@@ -71,6 +71,14 @@ def test_runtime_composition_inventory_exposes_core_components():
         "concentration_analysis",
         "portfolio_restrictions",
         "portfolio_research_snapshot",
+        "protection_input_monitor",
+        "strategy_health_protection",
+        "temporal_safety_protection",
+        "lifecycle_protection",
+        "dependency_protection",
+        "system_safety_protection",
+        "research_protection",
+        "research_protection_snapshot",
         "state",
         "research_pipeline",
         "strategy_evaluation",
@@ -108,6 +116,14 @@ def test_runtime_composition_inventory_exposes_core_components():
     assert components["concentration_analysis"]["active"] is True
     assert components["portfolio_restrictions"]["active"] is True
     assert components["portfolio_research_snapshot"]["active"] is True
+    assert components["protection_input_monitor"]["active"] is True
+    assert components["strategy_health_protection"]["active"] is True
+    assert components["temporal_safety_protection"]["active"] is True
+    assert components["lifecycle_protection"]["active"] is True
+    assert components["dependency_protection"]["active"] is True
+    assert components["system_safety_protection"]["active"] is True
+    assert components["research_protection"]["active"] is True
+    assert components["research_protection_snapshot"]["active"] is True
     assert components["data_trust"]["persistence_participant"] is True
     assert components["data_trust"]["recovery_participant"] is True
     assert components["market_intelligence"]["persistence_participant"] is True
@@ -118,6 +134,8 @@ def test_runtime_composition_inventory_exposes_core_components():
     assert components["post_scoring_research_assessment"]["recovery_participant"] is True
     assert components["research_risk"]["persistence_participant"] is True
     assert components["portfolio_research_snapshot"]["recovery_participant"] is True
+    assert components["research_protection"]["persistence_participant"] is True
+    assert components["research_protection_snapshot"]["recovery_participant"] is True
     assert components["state"]["persistence_participant"] is True
     assert components["state"]["recovery_participant"] is True
 
