@@ -56,6 +56,9 @@ from amrte.web.research_portfolio import (
 from amrte.web.research_protection import (
     build_research_protection_summary,
 )
+from amrte.web.research_decisions import (
+    build_research_decisions_summary,
+)
 
 
 VERSION = AMRTE_VERSION
@@ -443,6 +446,15 @@ def create_app(
     ) -> dict[str, object]:
         runtime = request.app.state.runtime
         return build_research_protection_summary(
+            runtime
+        )
+
+    @app.get("/api/v1/research-decisions")
+    def research_decisions_summary(
+        request: Request,
+    ) -> dict[str, object]:
+        runtime = request.app.state.runtime
+        return build_research_decisions_summary(
             runtime
         )
 
