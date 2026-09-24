@@ -35,6 +35,9 @@ from amrte.web.persistence_recovery import (
 from amrte.web.runtime_composition import (
     build_runtime_composition_summary,
 )
+from amrte.web.market_data_boundary import (
+    build_market_data_boundary_summary,
+)
 
 
 VERSION = AMRTE_VERSION
@@ -354,6 +357,15 @@ def create_app(
     ) -> dict[str, object]:
         runtime = request.app.state.runtime
         return build_runtime_composition_summary(
+            runtime
+        )
+
+    @app.get("/api/v1/market-data-boundary")
+    def market_data_boundary_summary(
+        request: Request,
+    ) -> dict[str, object]:
+        runtime = request.app.state.runtime
+        return build_market_data_boundary_summary(
             runtime
         )
 
