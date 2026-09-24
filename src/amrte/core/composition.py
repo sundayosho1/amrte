@@ -648,6 +648,10 @@ def register_core_components(
 
     for metadata, component in master_research_decision_component_registrations():
         composition.register(metadata, component)
+    from amrte.research.evidence_ledger import research_decision_evidence_component_registrations
+
+    for metadata, component in research_decision_evidence_component_registrations():
+        composition.register(metadata, component)
     composition.register(
         ComponentMetadata(
             component_id="composition",

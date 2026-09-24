@@ -84,6 +84,11 @@ def test_runtime_composition_inventory_exposes_core_components():
         "master_research_decision",
         "research_decision_trace",
         "research_decision_ledger",
+        "evidence_validation",
+        "evidence_serialization",
+        "research_evidence_ledger",
+        "ledger_integrity_verification",
+        "evidence_reconstruction",
         "state",
         "research_pipeline",
         "strategy_evaluation",
@@ -134,6 +139,11 @@ def test_runtime_composition_inventory_exposes_core_components():
     assert components["master_research_decision"]["active"] is True
     assert components["research_decision_trace"]["active"] is True
     assert components["research_decision_ledger"]["active"] is True
+    assert components["evidence_validation"]["active"] is True
+    assert components["evidence_serialization"]["active"] is True
+    assert components["research_evidence_ledger"]["active"] is True
+    assert components["ledger_integrity_verification"]["active"] is True
+    assert components["evidence_reconstruction"]["active"] is True
     assert components["data_trust"]["persistence_participant"] is True
     assert components["data_trust"]["recovery_participant"] is True
     assert components["market_intelligence"]["persistence_participant"] is True
@@ -148,6 +158,8 @@ def test_runtime_composition_inventory_exposes_core_components():
     assert components["research_protection_snapshot"]["recovery_participant"] is True
     assert components["master_research_decision"]["persistence_participant"] is True
     assert components["research_decision_ledger"]["recovery_participant"] is True
+    assert components["research_evidence_ledger"]["persistence_participant"] is True
+    assert components["evidence_reconstruction"]["recovery_participant"] is True
     assert components["state"]["persistence_participant"] is True
     assert components["state"]["recovery_participant"] is True
 

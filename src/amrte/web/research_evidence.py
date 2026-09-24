@@ -3,6 +3,11 @@ from __future__ import annotations
 from typing import Any
 
 from amrte.operations.runtime import VERSION
+from amrte.research.evidence_ledger import (
+    RESEARCH_DECISION_EVIDENCE_LEDGER_VERSION,
+    research_decision_evidence_components_from_inventory,
+    research_decision_evidence_record_schema_identity,
+)
 
 
 CAPABILITY_INVENTORY = (
@@ -70,6 +75,16 @@ def build_research_evidence_summary(
     execution = engine.registry.require(
         "execution"
     )
+    composition = getattr(runtime, "composition", None)
+    composition_diagnostics = composition.diagnostics() if composition is not None else None
+    ledger_diagnostics = _ledger_diagnostics(composition)
+    ledger_components = (
+        research_decision_evidence_components_from_inventory(
+            tuple(composition_diagnostics["components"])
+        )
+        if composition_diagnostics is not None
+        else {}
+    )
 
     research_capabilities = [
         {
@@ -113,6 +128,16 @@ def build_research_evidence_summary(
         "research_capabilities": (
             research_capabilities
         ),
+        "ledger": {
+            "runtime_version": RESEARCH_DECISION_EVIDENCE_LEDGER_VERSION,
+            "record_schema_identity": research_decision_evidence_record_schema_identity(),
+            "status": ledger_diagnostics,
+            "components": ledger_components,
+            "checkpoint_is_ledger": False,
+            "historical_evidence_mutation_available": False,
+            "append_only": True,
+            "financial_execution": "NONE",
+        },
         "capabilities": {
             "view_capability_inventory": True,
             "view_readiness": True,
@@ -136,3 +161,83 @@ def build_research_evidence_summary(
             "account_connectivity": False,
         },
     }
+
+
+def build_research_evidence_record_detail(
+    runtime: Any,
+    record_id: str,
+) -> dict[str, Any]:
+    ledger = _ledger_runtime(getattr(runtime, "composition", None))
+    if ledger is None:
+        return {
+            "mode": "READ_ONLY",
+            "available": False,
+            "record_id": record_id,
+            "reason": "P47_LEDGER_UNAVAILABLE",
+        }
+    try:
+        bundle = ledger.reconstruct_by_record_id(record_id)
+    except KeyError:
+        return {
+            "mode": "READ_ONLY",
+            "available": False,
+            "record_id": record_id,
+            "reason": "P47_EVIDENCE_RECORD_NOT_FOUND",
+        }
+    record = bundle.record
+    return {
+        "mode": "READ_ONLY",
+        "available": True,
+        "record": {
+            "evidence_record_id": record.evidence_record_id,
+            "ledger_sequence": record.ledger_sequence,
+            "record_type": record.record_type,
+            "decision_id": record.decision_id,
+            "trace_id": record.trace_id,
+            "processing_context_id": record.processing_context_id,
+            "dataset_id": record.dataset_id,
+            "dataset_fingerprint": record.dataset_fingerprint,
+            "observation_id": record.observation_id,
+            "knowledge_cutoff_utc": record.knowledge_cutoff_utc.isoformat(),
+            "configuration_identity": record.configuration_identity,
+            "pipeline_identity": record.pipeline_identity,
+            "recovery_epoch": record.recovery_epoch,
+            "classification": record.final_classification,
+            "reason_codes": list(record.reason_codes),
+            "restriction_references": list(record.restriction_references),
+            "stage_evidence_ids": [
+                item.get("evidence_id") for item in record.stage_evidence
+            ],
+            "previous_record_hash": record.previous_record_hash,
+            "record_hash": record.record_hash,
+            "evidence_fingerprint": record.evidence_fingerprint,
+            "verification_state": bundle.integrity.status.value,
+            "verification_reasons": list(bundle.integrity.reason_codes),
+            "financial_execution": "NONE",
+        },
+        "reconstruction": {
+            "recomputed_decision": bundle.reconstruction_recomputed_decision,
+            "decision": dict(bundle.decision),
+            "trace": dict(bundle.trace),
+            "processing_context": dict(bundle.processing_context),
+            "stage_evidence": [dict(item) for item in bundle.stage_evidence],
+            "release_provenance": dict(bundle.release_provenance),
+        },
+    }
+
+
+def _ledger_runtime(composition: Any) -> Any | None:
+    if composition is None:
+        return None
+    try:
+        component = composition.get("research_evidence_ledger").component
+    except Exception:
+        return None
+    return getattr(component, "runtime", None)
+
+
+def _ledger_diagnostics(composition: Any) -> dict[str, Any] | None:
+    ledger = _ledger_runtime(composition)
+    if ledger is None:
+        return None
+    return ledger.diagnostics()
