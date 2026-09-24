@@ -40,6 +40,7 @@ SOURCE_IDENTITY_EXCLUDED_PREFIXES = (
     "build/",
     "dist/",
     "data/logs/",
+    "data/research-evidence-ledger/",
     "data/runtime/",
     "data/state/",
     "data/backup/",

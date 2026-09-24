@@ -10,7 +10,10 @@ from fastapi.staticfiles import StaticFiles
 
 from amrte.core.constants import AMRTE_VERSION
 from amrte.web.administration import build_administration_summary
-from amrte.web.research_evidence import build_research_evidence_summary
+from amrte.web.research_evidence import (
+    build_research_evidence_record_detail,
+    build_research_evidence_summary,
+)
 from amrte.web.research_governance import build_research_governance_summary
 from amrte.web.research_lifecycle_quality import (
     build_research_lifecycle_quality_payload,
@@ -341,6 +344,17 @@ def create_app(
         runtime = request.app.state.runtime
         return build_research_evidence_summary(
             runtime
+        )
+
+    @app.get("/api/v1/research-evidence/{record_id}")
+    def research_evidence_record(
+        record_id: str,
+        request: Request,
+    ) -> dict[str, object]:
+        runtime = request.app.state.runtime
+        return build_research_evidence_record_detail(
+            runtime,
+            record_id,
         )
 
     @app.get("/api/v1/research-governance")
