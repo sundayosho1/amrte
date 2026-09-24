@@ -620,6 +620,10 @@ def register_core_components(
 
     for metadata, component in market_data_component_registrations():
         composition.register(metadata, component)
+    from amrte.research.data_quality_runtime import data_quality_component_registrations
+
+    for metadata, component in data_quality_component_registrations():
+        composition.register(metadata, component)
     composition.register(
         ComponentMetadata(
             component_id="composition",

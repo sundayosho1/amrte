@@ -65,6 +65,12 @@ def test_exact_domain_inventory(client):
 def test_all_domains_are_implementation_evidence_not_runtime_state(client):
     payload = get_payload(client)
 
+    active_domains = {
+        "observation_quality",
+        "research_reliability",
+        "temporal_quality",
+        "system_safety",
+    }
     for name in EXPECTED_DOMAINS:
         domain = payload["domains"][name]
 
@@ -73,9 +79,9 @@ def test_all_domains_are_implementation_evidence_not_runtime_state(client):
         )
 
         assert domain["implemented"] is True
-        assert domain["runtime_active"] is False
-        assert domain["runtime_authority"] is False
-        assert domain["current_state_available"] is False
+        assert domain["runtime_active"] is (name in active_domains)
+        assert domain["runtime_authority"] is (name in active_domains)
+        assert domain["current_state_available"] is (name in active_domains)
 
 
 def test_engine_authority_names_are_exact(client):
@@ -312,9 +318,9 @@ def test_runtime_authority_classification(client):
 
     authority = payload["runtime_authority"]
 
-    assert authority["target_engines_registered"] is False
-    assert authority["target_engines_runtime_active"] is False
-    assert authority["target_engines_current_state_available"] is False
+    assert authority["target_engines_registered"] is True
+    assert authority["target_engines_runtime_active"] is True
+    assert authority["target_engines_current_state_available"] is True
 
     assert authority["authoritative_runtime"] == (
         "PersistentResearchRuntime"
@@ -326,8 +332,8 @@ def test_current_state_is_explicitly_unavailable(client):
 
     availability = payload["current_state"]
 
-    assert availability["available"] is False
-    assert availability["status"] == "UNAVAILABLE"
+    assert availability["available"] is True
+    assert availability["status"] == "AVAILABLE"
 
     assert "runtime" in availability["reason"].lower()
 

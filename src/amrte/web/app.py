@@ -38,6 +38,9 @@ from amrte.web.runtime_composition import (
 from amrte.web.market_data_boundary import (
     build_market_data_boundary_summary,
 )
+from amrte.web.data_quality_runtime import (
+    build_data_quality_runtime_summary,
+)
 
 
 VERSION = AMRTE_VERSION
@@ -332,8 +335,13 @@ def create_app(
         )
 
     @app.get("/api/v1/research-lifecycle-quality")
-    def research_lifecycle_quality() -> dict[str, object]:
-        return build_research_lifecycle_quality_payload()
+    def research_lifecycle_quality(
+        request: Request,
+    ) -> dict[str, object]:
+        runtime = request.app.state.runtime
+        return build_research_lifecycle_quality_payload(
+            runtime
+        )
     @app.get("/api/v1/operational-readiness")
     def operational_readiness(
         request: Request,
@@ -366,6 +374,15 @@ def create_app(
     ) -> dict[str, object]:
         runtime = request.app.state.runtime
         return build_market_data_boundary_summary(
+            runtime
+        )
+
+    @app.get("/api/v1/data-quality-runtime")
+    def data_quality_runtime_summary(
+        request: Request,
+    ) -> dict[str, object]:
+        runtime = request.app.state.runtime
+        return build_data_quality_runtime_summary(
             runtime
         )
 
