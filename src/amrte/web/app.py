@@ -27,6 +27,12 @@ from amrte.web.research_experiments import (
     build_research_experiment_detail,
     build_research_experiments_summary,
 )
+from amrte.web.forward_research import (
+    build_forward_runtime_summary,
+    build_forward_session_detail,
+    build_forward_streams_summary,
+    build_shadow_research_summary,
+)
 from amrte.web.research_governance import build_research_governance_summary
 from amrte.web.research_lifecycle_quality import (
     build_research_lifecycle_quality_payload,
@@ -564,6 +570,70 @@ def create_app(
         runtime = request.app.state.runtime
         return build_research_configurations_summary(
             runtime,
+            offset=offset,
+            limit=limit,
+        )
+
+    @app.get("/api/v1/forward-runtime")
+    def forward_runtime_summary(
+        request: Request,
+        offset: int = 0,
+        limit: int = 50,
+    ) -> dict[str, object]:
+        runtime = request.app.state.runtime
+        return build_forward_runtime_summary(
+            runtime,
+            offset=offset,
+            limit=limit,
+        )
+
+    @app.get("/api/v1/forward-sessions")
+    def forward_sessions_summary(
+        request: Request,
+        offset: int = 0,
+        limit: int = 50,
+    ) -> dict[str, object]:
+        runtime = request.app.state.runtime
+        return build_forward_runtime_summary(
+            runtime,
+            offset=offset,
+            limit=limit,
+        )
+
+    @app.get("/api/v1/forward-sessions/{session_id}")
+    def forward_session_detail(
+        request: Request,
+        session_id: str,
+    ) -> dict[str, object]:
+        runtime = request.app.state.runtime
+        return build_forward_session_detail(runtime, session_id)
+
+    @app.get("/api/v1/forward-streams")
+    def forward_streams_summary(
+        request: Request,
+        session_id: str | None = None,
+        offset: int = 0,
+        limit: int = 50,
+    ) -> dict[str, object]:
+        runtime = request.app.state.runtime
+        return build_forward_streams_summary(
+            runtime,
+            session_id=session_id,
+            offset=offset,
+            limit=limit,
+        )
+
+    @app.get("/api/v1/shadow-research")
+    def shadow_research_summary(
+        request: Request,
+        session_id: str | None = None,
+        offset: int = 0,
+        limit: int = 50,
+    ) -> dict[str, object]:
+        runtime = request.app.state.runtime
+        return build_shadow_research_summary(
+            runtime,
+            session_id=session_id,
             offset=offset,
             limit=limit,
         )

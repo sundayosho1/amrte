@@ -57,6 +57,7 @@ def test_transient_excluded_files_do_not_change_fingerprint(tmp_path):
     write(tmp_path / "data" / "logs" / "amrte.jsonl", "ignored\n")
     write(tmp_path / "data" / "research-controlled-experiments" / "state.json", "ignored\n")
     write(tmp_path / "data" / "research-evidence-ledger" / "ledger.head.json", "ignored\n")
+    write(tmp_path / "data" / "forward-research-runtime" / "state.json", "ignored\n")
     write(tmp_path / "data" / "research-improvement-intelligence" / "state.json", "ignored\n")
     write(tmp_path / "data" / "research-outcome-performance" / "state.json", "ignored\n")
     assert provenance.source_content_identity(tmp_path).sha256 == first
