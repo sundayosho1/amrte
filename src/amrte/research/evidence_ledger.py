@@ -851,8 +851,14 @@ class ResearchDecisionEvidenceLedger:
         if decision.recovery_epoch != context.recovery_epoch:
             reasons.append("P47_RECOVERY_EPOCH_MISMATCH")
         stages = tuple(item.stage for item in context.stage_records)
-        if stages != tuple(required_stage_schema_identities()):
+        expected_stages = tuple(required_stage_schema_identities())
+        if stages != expected_stages and decision.final_classification != "FAILED":
             reasons.append("P47_STAGE_ORDER_MISMATCH")
+        elif stages != expected_stages:
+            expected_position = {stage: index for index, stage in enumerate(expected_stages)}
+            positions = [expected_position.get(stage, -1) for stage in stages]
+            if any(position < 0 for position in positions) or positions != sorted(positions):
+                reasons.append("P47_STAGE_ORDER_MISMATCH")
         if trace.trace_id != deterministic_id("p46_research_decision_trace", trace.trace_fingerprint):
             reasons.append("P47_TRACE_IDENTITY_MISMATCH")
         expected_decision_id = deterministic_id("p46_final_research_decision", decision.decision_fingerprint)
@@ -880,13 +886,15 @@ class ResearchDecisionEvidenceLedger:
 
     def _detect_conflicts(self, candidate: ResearchDecisionEvidenceRecord) -> None:
         for record in self._load_records():
-            if record.decision_id == candidate.decision_id and record.trace_id != candidate.trace_id and record.record_type == candidate.record_type:
+            if record.record_type != EvidenceRecordType.ORIGINAL_DECISION.value or candidate.record_type != EvidenceRecordType.ORIGINAL_DECISION.value:
+                continue
+            if record.decision_id == candidate.decision_id and record.trace_id != candidate.trace_id:
                 self.metrics["conflict_count"] += 1
                 raise LedgerConflictError("P47_SAME_DECISION_DIFFERENT_TRACE")
-            if record.trace_id == candidate.trace_id and record.decision_id != candidate.decision_id and record.record_type == candidate.record_type:
+            if record.trace_id == candidate.trace_id and record.decision_id != candidate.decision_id:
                 self.metrics["conflict_count"] += 1
                 raise LedgerConflictError("P47_SAME_TRACE_DIFFERENT_DECISION")
-            if record.processing_context_id == candidate.processing_context_id and record.evidence_fingerprint != candidate.evidence_fingerprint and record.record_type == candidate.record_type:
+            if record.processing_context_id == candidate.processing_context_id and record.evidence_fingerprint != candidate.evidence_fingerprint:
                 self.metrics["conflict_count"] += 1
                 raise LedgerConflictError("P47_PROCESSING_CONTEXT_CONFLICT")
             if record.ledger_sequence == candidate.ledger_sequence:

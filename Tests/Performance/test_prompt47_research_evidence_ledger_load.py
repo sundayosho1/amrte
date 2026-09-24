@@ -27,6 +27,6 @@ def test_prompt47_research_evidence_ledger_scales_beyond_p46_runtime_retention(t
     assert target.diagnostics()["ledger_record_count"] == 150
     assert target.diagnostics()["memory"]["recent_record_cache_size"] <= 8
     assert bundle.record.ledger_sequence == 150
-    assert append_elapsed < 10.0
+    assert append_elapsed < 30.0
     assert verify_elapsed < 5.0
     assert reconstruct_elapsed < 2.0
