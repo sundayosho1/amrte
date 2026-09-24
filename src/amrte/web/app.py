@@ -44,6 +44,9 @@ from amrte.web.data_quality_runtime import (
 from amrte.web.market_intelligence import (
     build_market_intelligence_summary,
 )
+from amrte.web.strategy_evaluation import (
+    build_strategy_evaluation_summary,
+)
 
 
 VERSION = AMRTE_VERSION
@@ -395,6 +398,15 @@ def create_app(
     ) -> dict[str, object]:
         runtime = request.app.state.runtime
         return build_market_intelligence_summary(
+            runtime
+        )
+
+    @app.get("/api/v1/strategy-evaluation")
+    def strategy_evaluation_summary(
+        request: Request,
+    ) -> dict[str, object]:
+        runtime = request.app.state.runtime
+        return build_strategy_evaluation_summary(
             runtime
         )
 

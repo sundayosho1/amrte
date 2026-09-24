@@ -60,8 +60,11 @@ def test_runtime_composition_inventory_exposes_core_components():
         "observability",
         "random",
         "research_reliability",
+        "research_candidate_runtime",
         "state",
         "research_pipeline",
+        "strategy_evaluation",
+        "strategy_registry",
         "temporal_quality",
     }
 
@@ -82,10 +85,15 @@ def test_runtime_composition_inventory_exposes_core_components():
     assert components["market_event_context"]["active"] is True
     assert components["market_regime"]["active"] is True
     assert components["market_intelligence"]["active"] is True
+    assert components["strategy_registry"]["active"] is True
+    assert components["strategy_evaluation"]["active"] is True
+    assert components["research_candidate_runtime"]["active"] is True
     assert components["data_trust"]["persistence_participant"] is True
     assert components["data_trust"]["recovery_participant"] is True
     assert components["market_intelligence"]["persistence_participant"] is True
     assert components["market_intelligence"]["recovery_participant"] is True
+    assert components["strategy_evaluation"]["persistence_participant"] is True
+    assert components["research_candidate_runtime"]["recovery_participant"] is True
     assert components["state"]["persistence_participant"] is True
     assert components["state"]["recovery_participant"] is True
 
