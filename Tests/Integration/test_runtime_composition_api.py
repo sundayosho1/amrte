@@ -43,16 +43,20 @@ def test_runtime_composition_inventory_exposes_core_components():
         "clock",
         "composition",
         "configuration",
+        "data_trust",
         "execution",
         "health",
         "market_data_configured_dataset",
         "market_data_contract",
         "market_data_source_adapter_framework",
         "market_dataset_authority",
+        "observation_quality",
         "observability",
         "random",
+        "research_reliability",
         "state",
         "research_pipeline",
+        "temporal_quality",
     }
 
     assert set(components) == expected
@@ -62,6 +66,12 @@ def test_runtime_composition_inventory_exposes_core_components():
     assert components["market_data_contract"]["active"] is True
     assert components["market_dataset_authority"]["active"] is True
     assert components["market_data_configured_dataset"]["status"] == "UNAVAILABLE"
+    assert components["observation_quality"]["active"] is True
+    assert components["research_reliability"]["active"] is True
+    assert components["temporal_quality"]["active"] is True
+    assert components["data_trust"]["active"] is True
+    assert components["data_trust"]["persistence_participant"] is True
+    assert components["data_trust"]["recovery_participant"] is True
     assert components["state"]["persistence_participant"] is True
     assert components["state"]["recovery_participant"] is True
 

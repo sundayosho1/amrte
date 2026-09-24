@@ -365,6 +365,10 @@ def test_build_engine_exposes_composition_without_activating_pipeline():
     assert engine.composition.get("market_data_contract").ready is True
     assert engine.composition.get("market_dataset_authority").ready is True
     assert engine.composition.get("market_data_configured_dataset").status is ComponentStatus.UNAVAILABLE
+    assert engine.composition.get("observation_quality").ready is True
+    assert engine.composition.get("research_reliability").ready is True
+    assert engine.composition.get("temporal_quality").ready is True
+    assert engine.composition.get("data_trust").ready is True
     pipeline = engine.composition.research_pipeline_status()
     assert pipeline["registered"] is True
     assert pipeline["active"] is False
