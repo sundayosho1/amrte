@@ -203,8 +203,8 @@ def test_forward_ingestion_uses_p40_for_dedupe_gap_backfill_and_decisions():
 
 def test_shadow_comparison_and_drift_are_forward_only_research_evidence():
     target = runtime()
-    session, data = started(target)
-    feed_history(target, session.session_id, data, 7)
+    session, data = started(target, dataset(12))
+    feed_history(target, session.session_id, data, 12)
     decision = next(reversed(target.decisions.values()))
 
     match = target.compare_shadow_decision(decision.decision_id, decision.forward_signal_value)

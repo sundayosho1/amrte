@@ -7,6 +7,7 @@ from dataclasses import dataclass, replace
 from datetime import datetime, timedelta, timezone
 from decimal import Decimal
 from enum import Enum
+from functools import lru_cache
 from pathlib import Path
 from types import MappingProxyType
 from typing import Any, Mapping
@@ -313,6 +314,7 @@ class ForwardResearchRuntime:
         self.drift_snapshots: OrderedDict[str, ForwardDriftSnapshot] = OrderedDict()
         self._watermarks: dict[str, datetime] = {}
         self._last_sequence: dict[str, int] = {}
+        self._observation_fingerprints: dict[str, str] = {}
         self.recovery_restricted = False
         self.metrics = {
             "sessions_started": 0,
@@ -482,7 +484,7 @@ class ForwardResearchRuntime:
         if trusted.blocking_reasons:
             reasons.extend(f"P40_{item}" for item in trusted.blocking_reasons)
         warnings.extend(f"P40_{item}" for item in trusted.warning_reasons)
-        duplicate = not trusted.authoritative_effect_applied
+        duplicate = self._already_recorded_observation(observation)
         if duplicate:
             effect = ForwardObservationEffect.DUPLICATE
         elif reasons or trusted.trust_status in (TrustStatus.REJECTED, TrustStatus.QUARANTINED):
@@ -506,6 +508,7 @@ class ForwardResearchRuntime:
             warning_codes=tuple(dict.fromkeys(warnings)),
         )
         self.envelopes[envelope.envelope_id] = envelope
+        self._observation_fingerprints.setdefault(observation.observation_id, observation.observation_fingerprint)
         self._trim(self.envelopes, self.maximum_observations)
         decision: ForwardResearchDecisionRecord | None = None
         if effect is ForwardObservationEffect.ACCEPTED:
@@ -716,6 +719,9 @@ class ForwardResearchRuntime:
                 for session_id, envelopes in _group_envelopes_by_session(self.envelopes.values()).items()
                 if any(item.sequence is not None for item in envelopes)
             }
+            self._observation_fingerprints = {}
+            for envelope in self.envelopes.values():
+                self._observation_fingerprints.setdefault(envelope.observation_id, envelope.observation_fingerprint)
             self.recovery_restricted = False
             return state.replay_fingerprint == self.replay_fingerprint()
         except Exception:
@@ -748,12 +754,12 @@ class ForwardResearchRuntime:
                 "forward_drift_snapshot": forward_drift_snapshot_schema_identity(),
             },
             "upstream_schema_identities": {
-                "p39_observation": market_data_schema_identity("observation"),
-                "p40_quality_trust": quality_trust_schema_identity(),
-                "p46_final_decision": final_research_decision_schema_identity(),
-                "p47_evidence_record": research_decision_evidence_record_schema_identity(),
-                "p48_outcome_window": research_outcome_window_schema_identity(),
-                "p50_versioned_research_configuration": versioned_research_configuration_schema_identity(),
+                "p39_observation": _p39_observation_schema_identity(),
+                "p40_quality_trust": _p40_quality_schema_identity(),
+                "p46_final_decision": _p46_final_decision_schema_identity(),
+                "p47_evidence_record": _p47_evidence_record_schema_identity(),
+                "p48_outcome_window": _p48_outcome_window_schema_identity(),
+                "p50_versioned_research_configuration": _p50_versioned_configuration_schema_identity(),
             },
             "session_count": len(self.sessions),
             "observation_envelope_count": len(self.envelopes),
@@ -833,8 +839,8 @@ class ForwardResearchRuntime:
             effect.value,
             reason_codes,
             warning_codes,
-            market_data_schema_identity("observation"),
-            quality_trust_schema_identity(),
+            _p39_observation_schema_identity(),
+            _p40_quality_schema_identity(),
             fingerprint,
         )
 
@@ -876,9 +882,9 @@ class ForwardResearchRuntime:
             created_at,
             reasons,
             envelope.warning_codes,
-            final_research_decision_schema_identity(),
-            research_decision_evidence_record_schema_identity(),
-            research_outcome_window_schema_identity(),
+            _p46_final_decision_schema_identity(),
+            _p47_evidence_record_schema_identity(),
+            _p48_outcome_window_schema_identity(),
             fingerprint,
         )
 
@@ -923,6 +929,9 @@ class ForwardResearchRuntime:
         if envelope.effect == ForwardObservationEffect.ACCEPTED.value:
             return SourceLifecycleState.FORWARD_HEALTHY
         return SourceLifecycleState.INITIALIZING
+
+    def _already_recorded_observation(self, observation: CanonicalMarketObservation) -> bool:
+        return self._observation_fingerprints.get(observation.observation_id) == observation.observation_fingerprint
 
     @staticmethod
     def _trim(items: OrderedDict[str, Any], maximum: int) -> None:
@@ -1035,24 +1044,59 @@ def forward_research_policy_identity() -> str:
     return ForwardResearchPolicy.current().policy_identity
 
 
+@lru_cache(maxsize=None)
 def forward_research_session_schema_identity() -> str:
-    return _sha256_json({"schema": "p51_forward_research_session", "version": FORWARD_RESEARCH_SESSION_SCHEMA_VERSION, "fields": tuple(ForwardResearchSession.__dataclass_fields__), "p50_configuration": versioned_research_configuration_schema_identity()})
+    return _sha256_json({"schema": "p51_forward_research_session", "version": FORWARD_RESEARCH_SESSION_SCHEMA_VERSION, "fields": tuple(ForwardResearchSession.__dataclass_fields__), "p50_configuration": _p50_versioned_configuration_schema_identity()})
 
 
+@lru_cache(maxsize=None)
 def forward_observation_envelope_schema_identity() -> str:
-    return _sha256_json({"schema": "p51_forward_observation_envelope", "version": FORWARD_OBSERVATION_ENVELOPE_SCHEMA_VERSION, "fields": tuple(ForwardObservationEnvelope.__dataclass_fields__), "p39": market_data_schema_identity("observation"), "p40": quality_trust_schema_identity()})
+    return _sha256_json({"schema": "p51_forward_observation_envelope", "version": FORWARD_OBSERVATION_ENVELOPE_SCHEMA_VERSION, "fields": tuple(ForwardObservationEnvelope.__dataclass_fields__), "p39": _p39_observation_schema_identity(), "p40": _p40_quality_schema_identity()})
 
 
+@lru_cache(maxsize=None)
 def forward_research_decision_record_schema_identity() -> str:
-    return _sha256_json({"schema": "p51_forward_research_decision_record", "version": FORWARD_RESEARCH_DECISION_RECORD_SCHEMA_VERSION, "fields": tuple(ForwardResearchDecisionRecord.__dataclass_fields__), "session": forward_research_session_schema_identity(), "p46": final_research_decision_schema_identity(), "p47": research_decision_evidence_record_schema_identity(), "p48": research_outcome_window_schema_identity()})
+    return _sha256_json({"schema": "p51_forward_research_decision_record", "version": FORWARD_RESEARCH_DECISION_RECORD_SCHEMA_VERSION, "fields": tuple(ForwardResearchDecisionRecord.__dataclass_fields__), "session": forward_research_session_schema_identity(), "p46": _p46_final_decision_schema_identity(), "p47": _p47_evidence_record_schema_identity(), "p48": _p48_outcome_window_schema_identity()})
 
 
+@lru_cache(maxsize=None)
 def shadow_research_comparison_schema_identity() -> str:
     return _sha256_json({"schema": "p51_shadow_research_comparison", "version": SHADOW_RESEARCH_COMPARISON_SCHEMA_VERSION, "fields": tuple(ShadowResearchComparison.__dataclass_fields__), "decision_record": forward_research_decision_record_schema_identity()})
 
 
+@lru_cache(maxsize=None)
 def forward_drift_snapshot_schema_identity() -> str:
     return _sha256_json({"schema": "p51_forward_drift_snapshot", "version": FORWARD_DRIFT_SNAPSHOT_SCHEMA_VERSION, "fields": tuple(ForwardDriftSnapshot.__dataclass_fields__), "shadow": shadow_research_comparison_schema_identity()})
+
+
+@lru_cache(maxsize=None)
+def _p39_observation_schema_identity() -> str:
+    return market_data_schema_identity("observation")
+
+
+@lru_cache(maxsize=None)
+def _p40_quality_schema_identity() -> str:
+    return quality_trust_schema_identity()
+
+
+@lru_cache(maxsize=None)
+def _p46_final_decision_schema_identity() -> str:
+    return final_research_decision_schema_identity()
+
+
+@lru_cache(maxsize=None)
+def _p47_evidence_record_schema_identity() -> str:
+    return research_decision_evidence_record_schema_identity()
+
+
+@lru_cache(maxsize=None)
+def _p48_outcome_window_schema_identity() -> str:
+    return research_outcome_window_schema_identity()
+
+
+@lru_cache(maxsize=None)
+def _p50_versioned_configuration_schema_identity() -> str:
+    return versioned_research_configuration_schema_identity()
 
 
 def _session_summary(session: ForwardResearchSession | None) -> dict[str, Any] | None:

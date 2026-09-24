@@ -22,7 +22,7 @@ def test_prompt51_forward_research_runtime_synthetic_load():
             available_at=start + timedelta(minutes=15 * (index + 1)),
             received_at=start + timedelta(minutes=15 * (index + 1), seconds=1),
             open="100",
-            high="103",
+            high="105",
             low="99",
             close=str(100 + (index % 5)),
             volume="10",
