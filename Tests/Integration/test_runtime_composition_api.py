@@ -50,6 +50,12 @@ def test_runtime_composition_inventory_exposes_core_components():
         "market_data_contract",
         "market_data_source_adapter_framework",
         "market_dataset_authority",
+        "market_event_context",
+        "market_features",
+        "market_intelligence",
+        "market_regime",
+        "market_session",
+        "market_structure",
         "observation_quality",
         "observability",
         "random",
@@ -70,8 +76,16 @@ def test_runtime_composition_inventory_exposes_core_components():
     assert components["research_reliability"]["active"] is True
     assert components["temporal_quality"]["active"] is True
     assert components["data_trust"]["active"] is True
+    assert components["market_structure"]["active"] is True
+    assert components["market_features"]["active"] is True
+    assert components["market_session"]["active"] is True
+    assert components["market_event_context"]["active"] is True
+    assert components["market_regime"]["active"] is True
+    assert components["market_intelligence"]["active"] is True
     assert components["data_trust"]["persistence_participant"] is True
     assert components["data_trust"]["recovery_participant"] is True
+    assert components["market_intelligence"]["persistence_participant"] is True
+    assert components["market_intelligence"]["recovery_participant"] is True
     assert components["state"]["persistence_participant"] is True
     assert components["state"]["recovery_participant"] is True
 
