@@ -13,6 +13,12 @@ dependencies = [
     "tzdata; platform_system == 'Windows'",
 ]
 
+[project.optional-dependencies]
+test = [
+    "httpx2",
+    "pytest",
+]
+
 [tool.pytest.ini_options]
 pythonpath = ["src"]
 testpaths = ["Tests"]

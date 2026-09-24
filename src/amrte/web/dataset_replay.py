@@ -4,8 +4,9 @@ from __future__ import annotations
 
 from typing import Any
 
+from amrte.core.constants import AMRTE_VERSION
 
-VERSION = "0.27.0"
+VERSION = AMRTE_VERSION
 
 
 DATASET_SERVICE_NAMES = (

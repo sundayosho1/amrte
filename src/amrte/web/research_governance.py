@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from typing import Any
 
+from amrte.core.constants import AMRTE_VERSION
+
 
 CAPABILITY_INVENTORY = (
     "system_safety",
@@ -51,7 +53,7 @@ def build_research_governance_summary(runtime) -> dict[str, Any]:
         "runtime": {
             "state": runtime.state,
             "environment": engine.environment.name,
-            "version": "0.27.0",
+            "version": AMRTE_VERSION,
         },
         "governance_capabilities": [
             _capability(name)

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
+from amrte.core.constants import AMRTE_VERSION
 from amrte.core.engine import MANDATORY_SERVICES
 from amrte.core.types import HealthStatus
 
@@ -255,7 +256,7 @@ def build_health_diagnostics_summary(
             "environment": (
                 engine.environment.name
             ),
-            "version": "0.27.0",
+            "version": AMRTE_VERSION,
         },
         "authority": {
             "health_service": type(

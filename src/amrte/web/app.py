@@ -8,6 +8,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
+from amrte.core.constants import AMRTE_VERSION
 from amrte.web.administration import build_administration_summary
 from amrte.web.research_evidence import build_research_evidence_summary
 from amrte.web.research_governance import build_research_governance_summary
@@ -33,7 +34,7 @@ from amrte.web.persistence_recovery import (
 )
 
 
-VERSION = "0.27.0"
+VERSION = AMRTE_VERSION
 WEB_VERSION = "1.0"
 ENVIRONMENT = "RESEARCH"
 
