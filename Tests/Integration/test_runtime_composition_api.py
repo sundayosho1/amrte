@@ -101,6 +101,18 @@ def test_runtime_composition_inventory_exposes_core_components():
         "research_failure_clustering",
         "improvement_hypothesis_generation",
         "research_improvement_snapshot",
+        "experiment_registry",
+        "experiment_specification_validator",
+        "dataset_partition_manager",
+        "research_experiment_runtime",
+        "historical_validation",
+        "out_of_sample_validation",
+        "walk_forward_validation",
+        "robustness_validation",
+        "sensitivity_validation",
+        "configuration_comparison",
+        "research_promotion_assessment",
+        "versioned_research_configuration",
         "state",
         "research_pipeline",
         "strategy_evaluation",
@@ -168,6 +180,18 @@ def test_runtime_composition_inventory_exposes_core_components():
     assert components["research_failure_clustering"]["active"] is True
     assert components["improvement_hypothesis_generation"]["active"] is True
     assert components["research_improvement_snapshot"]["active"] is True
+    assert components["experiment_registry"]["active"] is True
+    assert components["experiment_specification_validator"]["active"] is True
+    assert components["dataset_partition_manager"]["active"] is True
+    assert components["research_experiment_runtime"]["active"] is True
+    assert components["historical_validation"]["active"] is True
+    assert components["out_of_sample_validation"]["active"] is True
+    assert components["walk_forward_validation"]["active"] is True
+    assert components["robustness_validation"]["active"] is True
+    assert components["sensitivity_validation"]["active"] is True
+    assert components["configuration_comparison"]["active"] is True
+    assert components["research_promotion_assessment"]["active"] is True
+    assert components["versioned_research_configuration"]["active"] is True
     assert components["data_trust"]["persistence_participant"] is True
     assert components["data_trust"]["recovery_participant"] is True
     assert components["market_intelligence"]["persistence_participant"] is True
@@ -190,6 +214,9 @@ def test_runtime_composition_inventory_exposes_core_components():
     assert components["improvement_evidence_validator"]["persistence_participant"] is True
     assert components["improvement_hypothesis_generation"]["recovery_participant"] is True
     assert components["research_improvement_snapshot"]["persistence_participant"] is True
+    assert components["experiment_registry"]["persistence_participant"] is True
+    assert components["research_experiment_runtime"]["recovery_participant"] is True
+    assert components["versioned_research_configuration"]["persistence_participant"] is True
     assert components["state"]["persistence_participant"] is True
     assert components["state"]["recovery_participant"] is True
 

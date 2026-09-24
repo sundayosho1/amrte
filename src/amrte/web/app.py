@@ -22,6 +22,11 @@ from amrte.web.research_improvements import (
     build_research_improvement_detail,
     build_research_improvements_summary,
 )
+from amrte.web.research_experiments import (
+    build_research_configurations_summary,
+    build_research_experiment_detail,
+    build_research_experiments_summary,
+)
 from amrte.web.research_governance import build_research_governance_summary
 from amrte.web.research_lifecycle_quality import (
     build_research_lifecycle_quality_payload,
@@ -528,6 +533,40 @@ def create_app(
     ) -> dict[str, object]:
         runtime = request.app.state.runtime
         return build_research_improvement_detail(runtime, candidate_id)
+
+    @app.get("/api/v1/research-experiments")
+    def research_experiments_summary(
+        request: Request,
+        offset: int = 0,
+        limit: int = 50,
+    ) -> dict[str, object]:
+        runtime = request.app.state.runtime
+        return build_research_experiments_summary(
+            runtime,
+            offset=offset,
+            limit=limit,
+        )
+
+    @app.get("/api/v1/research-experiments/{experiment_id}")
+    def research_experiment_detail(
+        request: Request,
+        experiment_id: str,
+    ) -> dict[str, object]:
+        runtime = request.app.state.runtime
+        return build_research_experiment_detail(runtime, experiment_id)
+
+    @app.get("/api/v1/research-configurations")
+    def research_configurations_summary(
+        request: Request,
+        offset: int = 0,
+        limit: int = 50,
+    ) -> dict[str, object]:
+        runtime = request.app.state.runtime
+        return build_research_configurations_summary(
+            runtime,
+            offset=offset,
+            limit=limit,
+        )
 
     @app.get("/api/v1/dashboard/summary")
     def dashboard_summary(
