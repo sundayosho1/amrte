@@ -79,6 +79,11 @@ def test_runtime_composition_inventory_exposes_core_components():
         "system_safety_protection",
         "research_protection",
         "research_protection_snapshot",
+        "research_processing_context",
+        "stage_evidence_verification",
+        "master_research_decision",
+        "research_decision_trace",
+        "research_decision_ledger",
         "state",
         "research_pipeline",
         "strategy_evaluation",
@@ -124,6 +129,11 @@ def test_runtime_composition_inventory_exposes_core_components():
     assert components["system_safety_protection"]["active"] is True
     assert components["research_protection"]["active"] is True
     assert components["research_protection_snapshot"]["active"] is True
+    assert components["research_processing_context"]["active"] is True
+    assert components["stage_evidence_verification"]["active"] is True
+    assert components["master_research_decision"]["active"] is True
+    assert components["research_decision_trace"]["active"] is True
+    assert components["research_decision_ledger"]["active"] is True
     assert components["data_trust"]["persistence_participant"] is True
     assert components["data_trust"]["recovery_participant"] is True
     assert components["market_intelligence"]["persistence_participant"] is True
@@ -136,6 +146,8 @@ def test_runtime_composition_inventory_exposes_core_components():
     assert components["portfolio_research_snapshot"]["recovery_participant"] is True
     assert components["research_protection"]["persistence_participant"] is True
     assert components["research_protection_snapshot"]["recovery_participant"] is True
+    assert components["master_research_decision"]["persistence_participant"] is True
+    assert components["research_decision_ledger"]["recovery_participant"] is True
     assert components["state"]["persistence_participant"] is True
     assert components["state"]["recovery_participant"] is True
 
